@@ -1,51 +1,62 @@
-// import { IEditBlog, IEditvisual, Ivisual } from "@libs/interface";
-// import { ObjectId, SafeMongoIdTransform } from "@libs/schema";
-// import { ApiProperty } from "@nestjs/swagger";
-// import { Transform } from 'class-transformer';
+import { IEditeBlog, IEditvisual, Ivisual } from "@libs/interface";
+import { ObjectId, SafeMongoIdTransform } from "@libs/schema";
+import { ApiProperty } from "@nestjs/swagger";
+import { Transform } from 'class-transformer';
 
-// import {
-//     IsBoolean,
-//     IsEnum,
-//     IsNumber,
-//     IsObject,
-//     IsOptional,
-//     IsString,
-//   } from 'class-validator';
+import {
+    IsBoolean,
+    IsEnum,
+    IsNumber,
+    IsObject,
+    IsOptional,
+    IsString,
+  } from 'class-validator';
+import { ContentDto, VisualDto } from "./add_blog.dto";
 
 
-// export class EditeVisualDto implements IEditvisual{
+export class EditeVisualDto implements IEditvisual{
 
-//     @ApiProperty({ example: 'url' })
-//     @IsString()
-//     url: string;
-//     @ApiProperty({ example: 'alt' })
-//     @IsString()
-//     alt: string;
-//     @ApiProperty({ example: 'name' })
-//     @IsString()
-//     name?: string;
-//     @ApiProperty({ example: 'link' })
-//     @IsString()
-//     link?: string;
+    @ApiProperty({ example: 'url' })
+    @IsString()
+    myUrl: string;
+    @ApiProperty({ example: 'alt' })
+    @IsString()
+    alt: string;
+    @ApiProperty({ example: 'name' })
+    @IsString()
+    name?: string;
+    @ApiProperty({ example: 'link' })
+    @IsString()
+    link?: string;
 
-// }
-// export class EditeBlogDto implements IEditBlog {
-//     @ApiProperty({ example: 'title' })
-//     @IsString()
-//     title: string;
-//     @ApiProperty({ example: 'content' })
-//     @IsString()
-//     content: string;
-//     @ApiProperty({ example: 'meta' })
-//     @IsString()
-//     metaDescription: string;
-//     @ApiProperty()
-//     images?: EditeVisualDto[];
-//     @ApiProperty({ example: 'meta' })
-//     @IsObject()
-//     video?: EditeVisualDto;
-//     @ApiProperty()
-//      categories: string[];
+}
+export class EditeBlogDto implements IEditeBlog {
+    @ApiProperty({ example: 'title' })
+    @IsString()
+    title: string;
+    @ApiProperty({ example: 'content' })
+    @IsString()
+    content: ContentDto[];
+    @ApiProperty({ example: 'meta' })
+    @IsString()
+    metaDescription: string;
+    images?: VisualDto[];
+    @ApiProperty()
+    @IsObject()
+    video?: VisualDto;
+    @ApiProperty()
+    categories: string[];
+    @ApiProperty()
+    @IsNumber()
+    views?: number;
+    @ApiProperty()
+    updatedAt?: Date;
+    @ApiProperty()
+    createdAt: Date;
+    // @ApiProperty()
+    // admin:TAdmin;
+    @ApiProperty({example:"www.lithosgem.com/blogs/about-gem-stones"})
+    URL : string;
    
 
-// }
+}

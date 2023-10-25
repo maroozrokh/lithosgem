@@ -5,10 +5,6 @@ import { IBlog, IOcontent, Ivisual } from '@libs/interface/blog';
 export type BlogDocument = Blog & Document;
 export const BLOG = 'Blog';
 
-@Schema({
-    timestamps: false,
-    versionKey: false,
-})
 
 export class Iimage implements Ivisual {
     @Prop({ required: true, default: 'bvghjl2u3n46njbjnb' })
@@ -19,7 +15,11 @@ export class Iimage implements Ivisual {
     name?: string;
     @Prop({ required: true, default: false })
     link?: string;
-    order:number
+    @Prop({ required: true, default: 1 })
+    order:number;
+    @Prop({ required: true})
+    categories:string[];
+    
 
 }
 
@@ -30,6 +30,12 @@ export class IOcontents implements IOcontent{
     text: string;
 
 }
+
+
+@Schema({
+    timestamps: false,
+    versionKey: false,
+})
 export class Blog extends BaseModel implements IBlog {
     @Prop({ required: true, default: 'gem stone' })
     title: string;

@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
  import { AProxy } from '../base/proxy-service';
 import { BlogPattern } from './enum';
-import { IBlog, IEditBlog, IFindAllBlog, IFindOneId } from '@libs/interface';
+import { IBlog, IEditeBlog, IFindAllBlog, IFindOneId } from '@libs/interface';
  
  
 
@@ -21,7 +21,7 @@ export class BlogProxy extends AProxy<BlogProxy> {
   }
 
 
-  editeBlog(payload: IEditBlog) {
+  updateBlog(payload: IEditeBlog) {
     return this.send(BlogPattern.UPDATE_BLOG, payload);
   }
 

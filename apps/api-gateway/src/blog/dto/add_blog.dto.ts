@@ -4,6 +4,7 @@ import { ApiProperty } from "@nestjs/swagger";
 import { Transform } from 'class-transformer';
 
 import {
+    IsArray,
     IsBoolean,
     IsDate,
     IsEnum,
@@ -14,7 +15,7 @@ import {
   } from 'class-validator';
 
 
-class VisualDto implements Ivisual{
+export class VisualDto implements Ivisual{
     // @ApiProperty({
     //     description: 'Id',
     //     required: true,
@@ -37,10 +38,13 @@ class VisualDto implements Ivisual{
     link?: string;
     @ApiProperty({ example: 1 })
     @IsNumber()
-    order?: number;
+    order: number;
+    @ApiProperty()
+    @IsArray()
+    categories:Array<string>;
 
 }
- class ContentDto implements IOcontent{
+ export class ContentDto implements IOcontent{
     @ApiProperty({example:1})
     @IsNumber()
      order: number;
@@ -77,9 +81,9 @@ export class AddBlogDto implements IBlog {
     @ApiProperty()
     @IsNumber()
     views?: number;
-
+    @ApiProperty()
     updatedAt?: Date;
-
+    @ApiProperty()
     createdAt: Date;
     @ApiProperty()
     admin:TAdmin;

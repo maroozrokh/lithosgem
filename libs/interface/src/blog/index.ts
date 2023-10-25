@@ -26,32 +26,44 @@ export interface IBlog {
 
   }
 
+
+
   export interface Ivisual{
     _ID?:any;
     url: string;
     alt:string;
     name?: string;
     link?: string;
-    order?:number;
+    order:number;
+    categories:Array<string>;
   }
 
 
-  export interface IEditBlog {
+
+  export interface IEditeBlog{
+    _id?: any;
     title: string;
-    content: string;
+    content: Array<IOcontent>;
     metaDescription: string;
     images?:Array<Ivisual>;
     video?:Ivisual;
     categories:Array<string>;
-   
+    URL: string;
   }
+
+
 
   
   export interface IEditvisual{
-   myUrl: string;
+
+    _id?:any;
+    url: string;
     alt:string;
     name?: string;
     link?: string;
+    order:number;
+    categories:Array<string>;
+
 
   }
   export type TBlog = IBlog | string | typeof ObjectId;

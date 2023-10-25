@@ -7,6 +7,7 @@ import { Role } from '@libs/interface';
 import { FindAllBlogDto } from './dto/finad_all_blog.dto';
 import { FindOneDto } from './dto/find_one_blog.dto';
 import { AddBlogDto } from './dto/add_blog.dto';
+import { EditeBlogDto } from './dto/edite_blog.dto';
 // import { EditeBlogDto } from './dto/edite_blog.dto';
 
 
@@ -25,14 +26,6 @@ export class BlogController {
     return this.blogService.findAllBlog(payload);
   }
 
-
-
-
-
-  @Get()
-  printTest() {
-    return this.blogService.printTest();
-  }
 
 
   @ApiOperation({
@@ -66,22 +59,28 @@ export class BlogController {
     summary: 'delete one blog',
     description: 'delete one blog',
   })
+
   @Delete('/:_id')
-  // @Auth(Role.ALL)
-  deleteBlog(@Param() payload: FindOneDto) {
-    return this.blogService.deleteBlog(payload);
+  deleteClientAccount( @Param() param: FindOneDto) {
+    return this.blogService.deleteOneBlog({
+        ...param,
+    });
   }
 
 
-  // @ApiOperation({
-  //   summary: 'edite one blog',
-  //   description: 'edite one blog',
-  // })
-  // @Put('/:_id')
-  // // @Auth(Role.ALL)
-  // editeBLog(@Body() payload: EditeBlogDto) {
-  //   return this.blogService.editeBlog(payload);
-  // }
+
+  @ApiOperation({
+    summary: 'edite one blog',
+    description: 'edite one blog',
+  })
+  @Put('/:_id')
+  // @Auth(Role.ALL)
+  editeBLog(@Body() payload: EditeBlogDto,  @Param() param: FindOneDto,) {
+    return this.blogService.updateBlog({...payload,...param});
+  }
+
+
+
 
   // @ApiOperation({
   //   summary: 'Find one client',

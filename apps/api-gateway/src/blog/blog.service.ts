@@ -1,5 +1,5 @@
 
-import { IBlog, IEditBlog, IFindAllBlog, IFindOneId } from '@libs/interface';
+import { IBlog,  IEditeBlog, IFindAllBlog, IFindOneId } from '@libs/interface';
 import { Injectable } from '@nestjs/common';
 import { BlogProxy } from '@res/common/proxy/blog';
 import { ok } from 'assert';
@@ -10,9 +10,7 @@ export class BlogService {
   addBlog(payload: IBlog) {
     return this.blogProxy.addBlog(payload);
   }
-  printTest(){
-    return 'test';
-  }
+
 
   // editeBlog(payload: IEditBlog) {
   //   return this.blogProxy.editeBlog(payload);
@@ -24,8 +22,12 @@ export class BlogService {
   findOneBlog(payload: IFindOneId) {
     return this.blogProxy.findOne(payload);
   }
-  deleteBlog(payload: IFindOneId) {
+  deleteOneBlog(payload: IFindOneId) {
     return this.blogProxy.deleteBlog(payload);
+  }
+
+  updateBlog(payload: IEditeBlog) {
+    return this.blogProxy.updateBlog(payload);
   }
 
 }
