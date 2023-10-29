@@ -2,7 +2,7 @@ import { Controller, Get } from '@nestjs/common';
 import { BlogMicroService } from './blog-micro.service';
 import { MessagePattern, Payload } from '@nestjs/microservices';
 import { BlogPattern } from '@res/common/proxy/blog';
-import { IBlog,  IEditeBlog,  IFindAllBlog, IFindOneId } from '@libs/interface';
+import { IBlog,  IEditeBlog,  IFindAllBlog, IFindOneId, Ivisual } from '@libs/interface';
 
 @Controller()
 export class BlogMicroController {
@@ -31,9 +31,16 @@ export class BlogMicroController {
     return this.blogMicroService.deleteOneBlog(payload);
   }
 
-  @MessagePattern(BlogPattern.UPDATE_BLOG)
-  updateBlog(@Payload() payload: IEditeBlog) {
-    return this.blogMicroService.updateBlog(payload);
-  }
+  // @MessagePattern(BlogPattern.UPDATE_BLOG)
+  // updateBlog(@Payload() payload: IEditeBlog) {
+  //   return this.blogMicroService.updateBlog(payload);
+  // }
+
+
+  
+  // @MessagePattern(BlogPattern.ADD_IMAGE)
+  // addImage(@Payload() payload: Ivisual[]) {
+  //   return this.blogMicroService.addImage(payload);
+  // }
 
 }

@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
  import { AProxy } from '../base/proxy-service';
 import { BlogPattern } from './enum';
-import { IBlog, IEditeBlog, IFindAllBlog, IFindOneId } from '@libs/interface';
+import { IBlog, IEditeBlog, IEditvisual, IFindAllBlog, IFindOneId, Ivisual } from '@libs/interface';
  
  
 
@@ -35,5 +35,14 @@ export class BlogProxy extends AProxy<BlogProxy> {
   }
 
 
+  updateImage(payload: IEditvisual) {
+    return this.send(BlogPattern.UPDATE_IMAGE, payload);
+  }
+
+  
+
+  // addImage(payload: Ivisual) {
+  //   return this.send(BlogPattern.ADD_IMAGE, payload);
+  // }
  
 }

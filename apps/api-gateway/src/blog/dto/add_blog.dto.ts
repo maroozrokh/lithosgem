@@ -1,5 +1,5 @@
 import { IAdmin, IAdminAccess, IAdminProfile, IBlog, IContact, IOcontent, Ivisual, Role, TAdmin } from "@libs/interface";
-import { ObjectId, SafeMongoIdTransform } from "@libs/schema";
+import { ImageSchima, ObjectId, SafeMongoIdTransform } from "@libs/schema";
 import { ApiProperty } from "@nestjs/swagger";
 import { Transform } from 'class-transformer';
 
@@ -55,24 +55,18 @@ export class VisualDto implements Ivisual{
 
 }
 export class AddBlogDto implements IBlog {
-    // @ApiProperty({
-    //     description: 'Id',
-    //     required: true,
-    //     type: String,
-    //     default: '64626e05af7a2a51be1b61e2',
-    // })
-    // @Transform((value) => SafeMongoIdTransform(value))
-    // _id: typeof ObjectId | string;
     @ApiProperty({ example: 'title' })
     @IsString()
     title: string;
-    @ApiProperty({ example: 'content' })
-    @IsString()
-    content: ContentDto[];
+    @ApiProperty()
+    @IsArray()
+    blogCcontent: ContentDto[];
     @ApiProperty({ example: 'meta' })
     @IsString()
     metaDescription: string;
-    images?: VisualDto[];
+    @ApiProperty()
+    @IsArray()
+      images?: VisualDto[];
     @ApiProperty()
     @IsObject()
     video?: VisualDto;

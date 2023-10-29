@@ -1,7 +1,7 @@
 // import { ObjectId } from '@libs/schema';
 // import { IPagination } from '../Base';
 
-import { ObjectId } from "@libs/schema";
+import { ImageSchima, ObjectId } from "@libs/schema";
 import { IPagination } from "../base";
 import { IAdmin } from "../admin";
 
@@ -13,11 +13,11 @@ import { IAdmin } from "../admin";
 export interface IBlog {
     _id?: any;
     title: string;
-    content: Array<IOcontent>;
+    blogCcontent: IOcontent[];
     metaDescription: string;
-    images?:Array<Ivisual>;
+    images?:Ivisual[];
     video?:Ivisual;
-    categories:Array<string>;
+    categories:string[];
     views?:number;
     updatedAt?:Date;
     createdAt?: Date;
@@ -35,7 +35,7 @@ export interface IBlog {
     name?: string;
     link?: string;
     order:number;
-    categories:Array<string>;
+    categories:string[];
   }
 
 
@@ -43,11 +43,11 @@ export interface IBlog {
   export interface IEditeBlog{
     _id?: any;
     title: string;
-    content: Array<IOcontent>;
+    content: IOcontent[];
     metaDescription: string;
-    images?:Array<Ivisual>;
+    images?:Ivisual[];
     video?:Ivisual;
-    categories:Array<string>;
+    categories:string[];
     URL: string;
   }
 
@@ -62,7 +62,7 @@ export interface IBlog {
     name?: string;
     link?: string;
     order:number;
-    categories:Array<string>;
+    categories:string[];
 
 
   }

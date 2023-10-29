@@ -15,10 +15,13 @@ import { ContentDto, VisualDto } from "./add_blog.dto";
 
 
 export class EditeVisualDto implements IEditvisual{
+    // _id?: any;
+   
+   
 
     @ApiProperty({ example: 'url' })
     @IsString()
-    myUrl: string;
+    url: string;
     @ApiProperty({ example: 'alt' })
     @IsString()
     alt: string;
@@ -28,6 +31,12 @@ export class EditeVisualDto implements IEditvisual{
     @ApiProperty({ example: 'link' })
     @IsString()
     link?: string;
+    @ApiProperty({ example: 'link' })
+    @IsString()
+    order: number;
+    @ApiProperty({ example: 'link' })
+    @IsString()
+    categories: string[];
 
 }
 export class EditeBlogDto implements IEditeBlog {

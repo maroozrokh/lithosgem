@@ -1,32 +1,78 @@
+import { IOcontent, Ivisual } from './../../../../libs/interface/src/blog/index';
+import { Payload } from '@nestjs/microservices';
 import { url } from 'inspector';
 import { AddBlogDto } from './../../../api-gateway/src/blog/dto/add_blog.dto';
 import { Type } from 'class-transformer';
 import { IAdmin, IBlog, IEditeBlog, IEditvisual, IFindAllBlog, IFindOneId } from '@libs/interface';
-import { AdminRepository, BlogRepository, str2objectId } from '@libs/schema';
+import { AdminRepository, BlogRepository, ImageRepository, str2objectId } from '@libs/schema';
 import { Injectable } from '@nestjs/common';
 import { BAD_REQUEST, OK } from '@res/common/helpers';
 import { BlogProxy } from '@res/common/proxy/blog';
-
+//   const newSubItem: IBlog = {};
+//   const newMainItem: Ivisual = {
+//   subItems: [newSubItem], // اضافه کردن یک SubItem به MainItem
+// };
 @Injectable()
 export class BlogMicroService {
 
 
   constructor(
-    private readonly blogRepo: BlogRepository, private readonly adminRepo: AdminRepository) { }
+    private readonly blogRepo: BlogRepository ,  private readonly imageRepo: ImageRepository ,private readonly adminRepo: AdminRepository) { }
+
+
+
+async addIMG (payloadIMG: Ivisual) {
+
+ const image = await this.imageRepo.create({
+    payloadIMG,
+  });
+  return (image);
+
+
+
+}
+
+
+async addContent (payload: IOcontent) {
+
+  const content = await this.blogRepo.create({
+     payload,
+   });
+   return (content);
+ 
+ 
+ 
+ }
 
   async addBlog(payload: IBlog) {
     // const admin = await this.adminRepo.findOneById(payload.admin._id);
     // if (!admin) {
     //   return BAD_REQUEST('Opps! not found admin');
     // }
-    const blog = await this.blogRepo.create({
-      ...payload,
-    });
-    if (!blog) {
-      return BAD_REQUEST('Opps! not create blog');
+    let img = [];
+    for (let i = 0; i <  payload.images.length; i++) {    
+      img[i]= await this.addIMG(payload.images[i]);
+      
     }
 
+    let content = [];
+    for (let j = 0; j <  payload.blogCcontent.length; j++) {    
+      content[j]= await this.addContent(payload.blogCcontent[j]);
+      
+    }
+
+    payload.images = img;
+    payload.blogCcontent = content;
+     const blog = await this.blogRepo.create({      
+      ...payload });
+
+     
+     if (!blog) {
+      return BAD_REQUEST('Opps! not create blog');
+    }
+    console.log(payload.blogCcontent);
     return OK(blog);
+
   }
 
   async findAllBlog(payload: IFindAllBlog) {
@@ -77,20 +123,8 @@ export class BlogMicroService {
   }
 
 
-
-
-
-
-
-  // _ID?:any;
-  // url: string;
-  // alt:string;
-  // name?: string;
-  // link?: string;
-  // order:number;
-  // categories:Array<string>;
   async updateImage(payload: IEditvisual) {
-    let imagen = await this.blogRepo.findOneByCondition({
+    let imagen = await this.imageRepo.findOneByCondition({
       _id: str2objectId(payload._id),
     });
     if (!imagen) {
@@ -99,20 +133,34 @@ export class BlogMicroService {
     if ('url' in payload) {
       imagen.url = payload.url;
 
- 
     }
 
     if ('alt' in payload) {
-      imagen.alt = payload.alt;
+      imagen.alt = payload.alt;  
 
- 
+    }
+    if ('name' in payload) {
+      imagen.name = payload.name;  
+
+    }
+    if ('link' in payload) {
+      imagen.link = payload.link;  
+
+    }
+    if ('order' in payload) {
+      imagen.order = payload.order;  
+
+    }
+    if ('categories' in payload) {
+      imagen.categories = payload.categories;  
+
     }
 
 
   }
 
 
-  async updateBlog(payload: IEditeBlog) {
+  async updateBlog(payload: IEditeBlog, PayloadI? : IEditvisual) {
     let blog = await this.blogRepo.findOneByCondition({
       _id: str2objectId(payload._id),
     });
@@ -124,26 +172,12 @@ export class BlogMicroService {
     }
 
     if ('content' in payload) {
-      blog.content = payload?.content;
+      blog.blogCcontent = payload?.content;
     }
 
     if ('metaDescription' in payload) {
       blog.metaDescription = payload?.metaDescription;
     }
-
-
-
-    // if ('images' in payload) {
-    //   let oneImage = await this.blogRepo.findOneByCondition({
-    //     _id: str2objectId(image._ID),
-    //   });
-    //   if (!oneImage) {
-    //     return BAD_REQUEST('Opps! images not found');
-    //   }
-    //   const images = blog.images || { url: '', alt: '', name: '', link: '', orde: 0, categorie: [] }
-    //   if (payload.images)
-    //     oneImage.images = payload?.images;
-    // }
 
     if ('video' in payload) {
       const video = blog.video || { url: '', alt: '', name: '', link: '', order: 0, categories: [] }
@@ -180,7 +214,10 @@ export class BlogMicroService {
     if ('URL' in payload) {
       blog.URL = payload?.URL;
     }
-
+   
+    // if ('images' in payload) {
+    //     this.updateImage(PayloadI._id);
+    // }
 
     await blog.save();
     blog = blog.toObject();
@@ -188,8 +225,9 @@ export class BlogMicroService {
 
   }
 
+
+
+
+
+
 }
-
-
-
-

@@ -6,7 +6,7 @@ import { Auth } from '@res/common/decorators/auth';
 import { Role } from '@libs/interface';
 import { FindAllBlogDto } from './dto/finad_all_blog.dto';
 import { FindOneDto } from './dto/find_one_blog.dto';
-import { AddBlogDto } from './dto/add_blog.dto';
+import { AddBlogDto, VisualDto } from './dto/add_blog.dto';
 import { EditeBlogDto } from './dto/edite_blog.dto';
 // import { EditeBlogDto } from './dto/edite_blog.dto';
 
@@ -80,6 +80,19 @@ export class BlogController {
   }
 
 
+
+
+  
+  // @ApiOperation({
+  //   summary: 'add one image',
+  //   description: 'add one image',
+  // })
+  // @Post('/images')
+  // // @Auth(Role.ADMIN,Role.SUPER_ADMIN)
+  // addImage(@Body() payload: VisualDto) {
+   
+  //   return this.blogService.addImage(payload);
+  // }
 
 
   // @ApiOperation({
