@@ -10,20 +10,17 @@ export type ImageDocument = ImageSchima & Document;
     versionKey: false,
 })
 export class ImageSchima implements Ivisual {
-    // @Prop({ type: 'ObjectId', auto: true })
-    // _ID:Types.ObjectId;
-
-    @Prop({ required: true, default: 'bvghjl2u3n46njbjnb' })
+    @Prop({ required: false })
     url: string;
-    @Prop({ required: true, default: 'gem stone' })
+    @Prop({ required: false})
     alt: string;
-    @Prop({ required: true, default: 'gem stone' })
+    @Prop({ required: false  })
     name?: string;
-    @Prop({ required: true, default: false })
+    @Prop({ required: false  })
     link?: string;
-    @Prop({ required: true, default: 1 })
+    @Prop({ required: false  })
     order:number;
-    @Prop({ required: true})
+    @Prop({ required: false})
     categories:string[];
     
 

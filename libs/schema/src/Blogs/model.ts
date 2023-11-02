@@ -10,15 +10,15 @@ export const BLOG = 'Blog';
 
 
 export class Iimage implements Ivisual {
-    @Prop({ required: true, default: 'bvghjl2u3n46njbjnb' })
+    @Prop({ required: true  })
     url: string;
-    @Prop({ required: true, default: 'gem stone' })
+    @Prop({ required: true })
     alt: string;
-    @Prop({ required: true, default: 'gem stone' })
+    @Prop({ required: true  })
     name?: string;
-    @Prop({ required: true, default: false })
+    @Prop({ required: true  })
     link?: string;
-    @Prop({ required: true, default: 1 })
+    @Prop({ required: true })
     order:number;
     @Prop({ required: true})
     categories:string[];
@@ -27,7 +27,7 @@ export class Iimage implements Ivisual {
 }
 
 export class IOcontents implements IOcontent{
-    @Prop({ required: true, default: 1 })
+    @Prop({ required: true, default: 1})
     order: number;
     @Prop({ required: true, default: 'gem stone text content' })
     text: string;

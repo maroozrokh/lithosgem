@@ -66,7 +66,7 @@ export class AddBlogDto implements IBlog {
     metaDescription: string;
     @ApiProperty()
     @IsArray()
-      images?: VisualDto[];
+    images?: VisualDto[];
     @ApiProperty()
     @IsObject()
     video?: VisualDto;

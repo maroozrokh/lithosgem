@@ -43,12 +43,13 @@ export interface IBlog {
   export interface IEditeBlog{
     _id?: any;
     title: string;
-    content: IOcontent[];
+    blogContent: IOcontent[];
     metaDescription: string;
     images?:Ivisual[];
     video?:Ivisual;
     categories:string[];
     URL: string;
+    // updatedAt?:Date;
   }
 
 
