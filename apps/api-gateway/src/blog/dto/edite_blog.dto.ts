@@ -1,4 +1,4 @@
-import { IEditeBlog, IEditvisual, Ivisual } from "@libs/interface";
+import { IEditeBlog, IEditvisual, IOcontent, Ivisual } from "@libs/interface";
 import { ObjectId, SafeMongoIdTransform } from "@libs/schema";
 import { ApiProperty } from "@nestjs/swagger";
 import { Transform } from 'class-transformer';
@@ -45,7 +45,7 @@ export class EditeBlogDto implements IEditeBlog {
     title: string;
     @ApiProperty({ example: 'content' })
     @IsString()
-    content: ContentDto[];
+    blogContent: ContentDto[];
     @ApiProperty({ example: 'meta' })
     @IsString()
     metaDescription: string;

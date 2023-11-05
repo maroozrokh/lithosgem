@@ -75,8 +75,8 @@ export class BlogController {
   })
   @Put('/:_id')
   // @Auth(Role.ALL)
-  editeBLog(@Body() payload: EditeBlogDto,  @Param() param: FindOneDto,) {
-    return this.blogService.updateBlog({...payload,...param});
+  editeBLog(@Body() payload: EditeBlogDto) {
+    return this.blogService.updateBlog({...payload});
   }
 
 

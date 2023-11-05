@@ -160,12 +160,12 @@ export class BlogMicroService {
     return (imagen);
 
   }
-
+  
 
   async updateBlog(payload: IEditeBlog, PayloadI?: IEditvisual) {
-    let blog = await this.blogRepo.findOneByCondition({
-      _id: str2objectId(payload._id),
-    });
+  const blog = await this.blogRepo.findOneByCondition({
+    _id: str2objectId(payload._id),
+  });
     if (!blog) {
       return BAD_REQUEST('Opps! blog not found');
     }
@@ -173,8 +173,12 @@ export class BlogMicroService {
       blog.title = payload?.title;
     }
 
-    if ('content' in payload) {
-      blog.blogCcontent = payload?.content;
+    if ('blogCcontent' in payload) {
+      for (let i = 0; i < Object.values(payload.blogCcontent).length; i++) {
+        blog.blogCcontent[i] = payload?.blogCcontent[i];
+      }
+  
+     
     }
 
     if ('metaDescription' in payload) {

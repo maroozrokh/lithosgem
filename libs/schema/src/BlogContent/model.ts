@@ -12,20 +12,23 @@ export const BLOG = 'Blog';
 @Schema({
     timestamps: false,
     versionKey: false,
+    // _id:false,
 })
  class BlogContent implements IOcontent{
-    @Prop({ required: true, default: 1})
+    @Prop({ required: false })
     order: number;
-    @Prop({ required: true, default: 'gem stone text content' })
+    @Prop({ required: false })
     text: string;
+ 
 
 }
 
 
 
 
-export const BlogContentSchema = SchemaFactory.createForClass(BlogContent);
+export const BlogContentSchema = SchemaFactory.createForClass(BlogContent) ;
 export const BlogContentFeature = {
     name: BlogContent.name,
     schema: BlogContentSchema,
+ 
 };
