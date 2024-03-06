@@ -1,7 +1,7 @@
-import { IOcontent, Ivisual } from './../../../../libs/interface/src/blog/index';
+import { IOcontent, Ivisual } from '../../../../libs/interface/src/blog/index';
 import { Payload } from '@nestjs/microservices';
 import { url } from 'inspector';
-import { AddBlogDto } from './../../../api-gateway/src/blog/dto/add_blog.dto';
+import { AddBlogDto } from '../../../api-gateway/src/blog/dto/add_blog.dto';
 import { Type } from 'class-transformer';
 import { IAdmin, IBlog, IEditeBlog, IEditvisual, IFindAllBlog, IFindOneId } from '@libs/interface';
 import { AdminRepository, BlogRepository, ImageRepository, str2objectId } from '@libs/schema';

@@ -5,9 +5,9 @@ import { BlogService } from './blog.service';
 import { Auth } from '@res/common/decorators/auth';
 import { Role } from '@libs/interface';
 import { FindAllBlogDto } from './dto/finad_all_blog.dto';
-import { FindOneDto } from './dto/find_one_blog.dto';
+import { FindOneDto, FindOneImageDto } from './dto/find_one_blog.dto';
 import { AddBlogDto, VisualDto } from './dto/add_blog.dto';
-import { EditeBlogDto } from './dto/edite_blog.dto';
+import { EditeBlogDto, EditeImageDto } from './dto/edite_blog.dto';
 // import { EditeBlogDto } from './dto/edite_blog.dto';
 
 
@@ -22,7 +22,6 @@ export class BlogController {
   @Get('/blogs')
   // @Auth(Role.ALL)
   findAllBlog(@Query() payload: FindAllBlogDto) {
-    // return this.blogService.findAllBlog({...payload});
     return this.blogService.findAllBlog(payload);
   }
 
@@ -61,7 +60,7 @@ export class BlogController {
   })
 
   @Delete('/:_id')
-  deleteClientAccount( @Param() param: FindOneDto) {
+  deleteOneBlog( @Param() param: FindOneDto) {
     return this.blogService.deleteOneBlog({
         ...param,
     });
@@ -75,8 +74,14 @@ export class BlogController {
   })
   @Put('/:_id')
   // @Auth(Role.ALL)
-  editeBLog(@Body() payload: EditeBlogDto) {
-    return this.blogService.updateBlog({...payload});
+  editeBLog(@Body() payload: EditeBlogDto, @Param() id: FindOneDto) {
+    return this.blogService.updateBlog({...payload, ...id});
+  }
+
+  @Put('/:_id/:_imageId')
+  // @Auth(Role.ALL)
+  editeImage(@Body() payload: VisualDto, @Param() id: FindOneImageDto) {
+    return this.blogService.editeImage({...payload, ...id});
   }
 
 

@@ -35,7 +35,7 @@ export class BlogProxy extends AProxy<BlogProxy> {
   }
 
 
-  updateImage(payload: IEditvisual) {
+  updateImage(payload: any) {
     return this.send(BlogPattern.UPDATE_IMAGE, payload);
   }
 

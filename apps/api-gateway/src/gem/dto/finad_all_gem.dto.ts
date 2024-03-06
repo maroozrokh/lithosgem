@@ -1,9 +1,9 @@
-import { IFindAllBlog } from '@libs/interface';
+import {  IFindAllGem } from '@libs/interface';
 import { ApiPropertyOptional } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
 import { IsInt, IsOptional } from 'class-validator';
-export class FindAllBlogDto implements IFindAllBlog {
-  blog?: any;
+export class FindAllGemDto implements IFindAllGem {
+  gem?: any;
   @ApiPropertyOptional({ example: 0 })
   @IsInt()
   @Type(() => Number)
@@ -15,7 +15,7 @@ export class FindAllBlogDto implements IFindAllBlog {
   @ApiPropertyOptional()
   @IsOptional()
   query: any;
-  @ApiPropertyOptional({example: ['sport','sport2']})
+  @ApiPropertyOptional({example: ['atashfeshani','khaki']})
   @IsOptional()
   category?: Array<string> ;
 }

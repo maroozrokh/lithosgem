@@ -1,5 +1,5 @@
 import { Controller, Get } from '@nestjs/common';
-import { BlogMicroService } from './blog-micro.service';
+import { BlogMicroService } from './gem-micro.service';
 import { MessagePattern, Payload } from '@nestjs/microservices';
 import { BlogPattern } from '@res/common/proxy/blog';
 import { IBlog,  IEditeBlog,  IFindAllBlog, IFindOneId, Ivisual } from '@libs/interface';

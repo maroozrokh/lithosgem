@@ -30,6 +30,15 @@ export class BlogService {
     return this.blogProxy.updateBlog(payload);
   }
 
+  
+  async editeImage(payload:any){
+
+    return this.blogProxy.updateImage(payload);
+
+  
+  
+  }
+
 
   // addImage(payload: Ivisual) {
   //   return this.blogProxy.addImage(payload);

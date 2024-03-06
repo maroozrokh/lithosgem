@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import { Document, Types } from 'mongoose';
 import { BaseModel } from '../Base/base.model';
 import { IBlog, IOcontent, Ivisual } from '@libs/interface/blog';
 import { ImageSchima } from '../ImageSchima';
@@ -8,8 +8,11 @@ export type BlogDocument = Blog & Document;
 export const BLOG = 'Blog';
 
 
-
+// @Schema({ _id: true })
 export class Iimage implements Ivisual {
+    // @Prop({ required: false, unique: true, auto: true, })
+    // _id?: Types.ObjectId;
+
     @Prop({ required: true  })
     url: string;
     @Prop({ required: true })
@@ -46,10 +49,10 @@ export class Blog extends BaseModel implements IBlog {
     blogCcontent: IOcontents[];
     @Prop({ required: true, default: 'meta description' })
     metaDescription: string;
-    @Prop({ required: false, default: null })
-    images: ImageSchima[];
-    @Prop({ required: false, default: null })
-    video?:ImageSchima;
+    @Prop({ required: false, default: [], _id : true, type: Array<Iimage> })
+    images: Iimage[];
+    @Prop({ required: false, default: null})
+    video?:Iimage;
     @Prop({ required: true, default: false })
     categories: string[];
     @Prop({ required: false, default: false })

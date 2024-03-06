@@ -1,9 +1,9 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 import { BaseModel } from '../Base/base.model';
-import { IGem } from '@libs/interface/gemstone';
-import { Ivisual } from '@libs/interface/blog';
-import { Iimage } from '../Blogs';
+import { IBoresh, IGem, IGemTable } from '@libs/interface/gem';
+import { IOcontent, Ivisual } from '@libs/interface/blog';
+import { IOcontents, Iimage } from '../Blogs';
 
 export type GemDocument = Gem & Document;
 export const GEM = 'Gem';
@@ -13,48 +13,36 @@ export const GEM = 'Gem';
     versionKey: false,
 })
 export class Gem extends BaseModel implements IGem {
-    @Prop({ required: true, default: 'gem' })
-     title: string;
-    @Prop({ required: true, default: 'gem' })
+    @Prop({ required: true, default: 'gem stone' })
+    title: string;
+    @Prop({ required: true, default: 'gem stone in shiraz' })
     metaDescription: string;
-    @Prop({ required: true, default: 'gem' })
-    content: string;
-    @Prop({ required: true, default: ['gem'] })
+    @Prop({ required: true , default: null})
+    content: IOcontents[];
+    @Prop({ required: true, default: false })
     categories: string[];
-    @Prop({ required: false, default: false })
+    @Prop({ required: false, default: [], _id : true, type: Array<Iimage> })
     images?: Iimage[];
-    @Prop({ required: false, default: false })
+    @Prop({ required: true, default: [], _id : true, type: Array<Iimage> })
+    mapimages?:   Iimage[];
+    @Prop({ required: false, default: null})
     video?: Iimage;
-    @Prop({ required: false, default: false })
+    @Prop({ required: false, default: null})
     sound?: Iimage;
-    @Prop({ required: false, default: false })
+    @Prop({ required: false, default: null})
     padcast?: Iimage;
+    @Prop({ required: true, default: 'www.lithosgem.com/gem' })
+    url: string;
+    @Prop({ required: true, default: 5})
+    popularity: number;
+    @Prop({ required: false, default: [], _id : true, type: Array<Iimage> })
+    boresh: IBoresh;
+    @Prop({ required: false, default: null, _id : true, type: {} })
+    table: IGemTable;
     @Prop({ required: false, default: false })
-    color?: string;
-    @Prop({ required: false, default: false })
-    ductColor?: string;
-    @Prop({ required: false, default: false })
-    opacity?: string;
-    @Prop({ required: false, default: false })
-    kelivazh?: string;
-    @Prop({ required: false, default: false })
-    jala?: string;
-    @Prop({ required: false, default: false })
-    zaribShekast?: string;
-    @Prop({ required: false, default: false })
-    hardness?: number;
-    @Prop({ required: false, default: false })
-    weigth?: number;
-    @Prop({ required: false, default: false })
-    system?: string;
-    @Prop({ required: false, default: false })
-    shops?: string[];
-    @Prop({ required: false, default: false })
-    price?: number;
-    @Prop({ required: false, default: false })
-    rare?: boolean;
-    @Prop({ required: false, default: false })
-    boreshImg?: Ivisual[];
+    views?: number;
+
+    
 }
 
 

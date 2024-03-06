@@ -58,13 +58,14 @@ export class AddBlogDto implements IBlog {
     @ApiProperty({ example: 'title' })
     @IsString()
     title: string;
-    @ApiProperty()
+    @ApiProperty({type: ()=>ContentDto ,isArray:true})
     @IsArray()
     blogCcontent: ContentDto[];
     @ApiProperty({ example: 'meta' })
     @IsString()
     metaDescription: string;
-    @ApiProperty()
+    @ApiProperty({type: ()=>VisualDto ,isArray:true})
+    // @ApiProperty({example:[{name:"" , meta:"", .....}]})
     @IsArray()
     images?: VisualDto[];
     @ApiProperty()

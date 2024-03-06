@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import { Model, Types } from 'mongoose';
 import { BaseRepository } from '../Base/base.repository';
 import { Blog, BlogDocument } from './model';
  
@@ -12,4 +12,21 @@ export class BlogRepository extends BaseRepository<BlogDocument> {
   ) {
     super(model);
   }
+
+  async addBlog(payload:any) {
+    const blog = new this.model(payload);
+
+    // Generate and assign _id for each group
+    blog.images.forEach((image:any) => {
+      image._id = new Types.ObjectId();
+
+    });
+    // blog.blogContent.forEach((content:any) => {
+    //   image._id = new Types.ObjectId();
+      
+    // });
+
+    return await blog.save();
+  }
+
 }

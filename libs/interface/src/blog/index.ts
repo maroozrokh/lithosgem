@@ -8,6 +8,9 @@ import { IAdmin } from "../admin";
   export interface IOcontent{
     order: number;
     text: string;
+    // format?:string;
+    // type?:string;
+
 
   }
 export interface IBlog {
@@ -23,19 +26,21 @@ export interface IBlog {
     createdAt?: Date;
     admin?: IAdmin;
     URL: string;
+    
 
   }
 
 
 
   export interface Ivisual{
-    _ID?:any;
+    _id?:any;
     url: string;
     alt:string;
     name?: string;
     link?: string;
     order:number;
     categories:string[];
+    // type?:string;
   }
 
 
@@ -72,6 +77,7 @@ export interface IBlog {
   export interface IFindAllBlog extends IPagination {
     query?: any;
     blog?: TBlog ;
+    category?: Array<string>;
   
   }
 

@@ -1,0 +1,16 @@
+{
+  "projects": {
+    "gem": {
+      "type": "library",
+      "root": "libs/gem",
+      "entryFile": "index",
+      "sourceRoot": "libs/gem/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/gem/tsconfig.lib.json"
+      }
+    }
+  },
+  "compilerOptions": {
+    "webpack": true
+  }
+}

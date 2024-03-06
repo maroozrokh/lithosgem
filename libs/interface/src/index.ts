@@ -4,6 +4,6 @@ export * from './base';
 export * from './blog';
 export * from './contact';
 export * from './faq';
-export * from './gemstone';
+export * from './gem';
 export * from './Role';
 export * from './user';

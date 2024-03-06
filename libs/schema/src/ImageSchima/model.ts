@@ -10,6 +10,7 @@ export type ImageDocument = ImageSchima & Document;
     versionKey: false,
 })
 export class ImageSchima implements Ivisual {
+    
     @Prop({ required: false })
     url: string;
     @Prop({ required: false})
