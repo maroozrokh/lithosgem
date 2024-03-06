@@ -3,22 +3,25 @@ import { Payload } from '@nestjs/microservices';
 import { url } from 'inspector';
 import { AddBlogDto } from '../../../api-gateway/src/blog/dto/add_blog.dto';
 import { Type } from 'class-transformer';
-import { IAdmin, IBlog, IEditeBlog, IEditvisual, IFindAllBlog, IFindOneId } from '@libs/interface';
-import { AdminRepository, BlogRepository, ImageRepository, str2objectId } from '@libs/schema';
+import { IAdmin, IBlog, IEditeBlog, IEditeGem, IEditvisual, IFindAllBlog, IFindAllGem, IFindOneId, IGem } from '@libs/interface';
+import { AdminRepository, BlogRepository, GemRepository, ImageRepository, str2objectId } from '@libs/schema';
 import { Injectable } from '@nestjs/common';
 import { BAD_REQUEST, OK } from '@res/common/helpers';
 import { BlogProxy } from '@res/common/proxy/blog';
 import { BlogContentRepository } from '@libs/schema/BlogContent';
+import { GemTableRepository } from '@libs/schema/GemTable';
 //   const newSubItem: IBlog = {};
 //   const newMainItem: Ivisual = {
 //   subItems: [newSubItem], // اضافه کردن یک SubItem به MainItem
 // };
 @Injectable()
-export class BlogMicroService {
+export class GemMicroService {
 
 
   constructor(
-    private readonly blogRepo: BlogRepository, private readonly blogContentRepo: BlogContentRepository, private readonly imageRepo: ImageRepository, private readonly adminRepo: AdminRepository) { }
+    private readonly gemRepo: GemRepository,private readonly gemTableRepo: GemTableRepository,
+     private readonly blogContentRepo: BlogContentRepository, private readonly imageRepo: ImageRepository, 
+     private readonly adminRepo: AdminRepository) { }
 
 
 
@@ -38,9 +41,9 @@ export class BlogMicroService {
     return (content);
   }
 
-  async addBlog(payload: IBlog) {
-    const blog = await this.blogRepo.addBlog(payload);
-    return (blog);
+  async addGem(payload: IGem) {
+    const gem = await this.gemRepo.addGem(payload);
+    return (gem);
 
   }
 
@@ -81,15 +84,15 @@ export class BlogMicroService {
 
   // }
 
-  async findAllBlog(payload: IFindAllBlog) {
+  async findAllGem(payload: IFindAllGem) {
 
     const $match = {};
 
     if (payload.query) {
       $match['name'] = new RegExp(payload.query, 'ig');
     }
-    if (!payload.blog) {
-      $match['blog'] = str2objectId(payload.blog?._id || payload?.blog);
+    if (!payload.gem) {
+      $match['gem'] = str2objectId(payload.gem?._id || payload?.gem);
     }
     //filter category
     if ('category' in payload) {
@@ -103,7 +106,7 @@ export class BlogMicroService {
     }
 
 // return $match;
-    const data = await this.blogRepo.pagination(
+    const data = await this.gemRepo.pagination(
       [{ $match }],
       payload.page,
       payload.count,
@@ -115,28 +118,28 @@ export class BlogMicroService {
 
   }
 
-  async findOneBlog(payload: IFindOneId) {
+  async findOneGem(payload: IFindOneId) {
 
-    const oneBlog = await this.blogRepo.findOneById(payload._id);
-    if (!oneBlog) {
-      return BAD_REQUEST('Opps! not found Blog');
+    const oneGem = await this.gemRepo.findOneById(payload._id);
+    if (!oneGem) {
+      return BAD_REQUEST('Opps! not found GEM');
     }
-    return OK(oneBlog);
+    return OK(oneGem);
 
   }
 
-  async deleteOneBlog(payload: IFindOneId) {
-    const blog = await this.blogRepo.findOneByCondition({
+  async deleteOneGem(payload: IFindOneId) {
+    const gem = await this.gemRepo.findOneByCondition({
       _id: str2objectId(payload._id),
     });
-    if (!blog) {
-      return BAD_REQUEST('Opps! not found blog');
+    if (!gem) {
+      return BAD_REQUEST('Opps! not found gem');
     }
-    const deletBlog = await this.blogRepo.deleteOne({
+    const deleteGem = await this.gemRepo.deleteOne({
       _id: payload._id,
     });
 
-    return OK(!!deletBlog?.deletedCount);
+    return OK(!!deleteGem?.deletedCount);
   }
 
 
@@ -179,7 +182,7 @@ export class BlogMicroService {
   
 
 
-  async blogUpdate(payload:IEditeBlog){
+  async gemUpdate(payload:IEditeGem){
     const blog = await this.blogRepo.findOneByCondition({
         _id: str2objectId(payload._id),
       });

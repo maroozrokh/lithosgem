@@ -5,8 +5,8 @@ import { BlogPattern } from '@res/common/proxy/blog';
 import { IBlog,  IEditeBlog,  IFindAllBlog, IFindOneId, Ivisual } from '@libs/interface';
 
 @Controller()
-export class BlogMicroController {
-  constructor(private readonly blogMicroService: BlogMicroService) {}
+export class GemMicroController {
+  constructor(private readonly gemMicroService: GemMicroService) {}
 
 
 
