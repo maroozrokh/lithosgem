@@ -23,10 +23,13 @@ export class EditeGemDto implements IEditeGem{
         @ApiProperty({type: ()=>VisualDto ,isArray:true})
         @IsArray()
         mapimages?: VisualDto[];
+        @ApiProperty({type: ()=>VisualDto })
         @IsObject()
         video?: VisualDto;
+        @ApiProperty({type: ()=>VisualDto })
         @IsObject()
         sound?: VisualDto;
+        @ApiProperty({type: ()=>VisualDto })
         @IsObject()
         padcast?: VisualDto;
         @ApiProperty({example:"www.lithosgem.com/gem/firooze"})
@@ -34,8 +37,10 @@ export class EditeGemDto implements IEditeGem{
         @ApiProperty({example:5})
         @IsNumber()
         popularity: number;
+        @ApiProperty({type: ()=>BoreshDto })
         @IsObject()
         boresh?: BoreshDto;
+        @ApiProperty({type: ()=>GemTableDto })
         @IsObject()
         table: GemTableDto;
         @ApiProperty()

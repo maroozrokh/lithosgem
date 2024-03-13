@@ -19,7 +19,7 @@ export class GemMicroService {
 
 
   constructor(
-    private readonly gemRepo: GemRepository,private readonly gemTableRepo: GemTableRepository,
+    private readonly gemRepo: GemRepository,
      private readonly blogContentRepo: BlogContentRepository, private readonly imageRepo: ImageRepository, 
      private readonly adminRepo: AdminRepository) { }
 
@@ -43,6 +43,7 @@ export class GemMicroService {
 
   async addGem(payload: IGem) {
     const gem = await this.gemRepo.addGem(payload);
+    // console.log(payload);
     return (gem);
 
   }
@@ -182,37 +183,37 @@ export class GemMicroService {
   
 
 
-  async gemUpdate(payload:IEditeGem){
-    const blog = await this.blogRepo.findOneByCondition({
-        _id: str2objectId(payload._id),
-      });
+  // async blogUpdate(payload:IEditeBlog){
+  //   const blog = await this.blogRepo.findOneByCondition({
+  //       _id: str2objectId(payload._id),
+  //     });
 
-  }
-  async updateBlog(payload: IEditeBlog, PayloadI?: IEditvisual) {
-  let blog = await this.blogRepo.findOneByCondition({
+  // }
+  async updateGem(payload: IEditeGem, payloadI?: IEditvisual) {
+  let gem = await this.gemRepo.findOneByCondition({
     _id: str2objectId(payload._id),
   });
-    if (!blog) {
-      return BAD_REQUEST('Opps! blog not found');
+    if (!gem) {
+      return BAD_REQUEST('Opps! gem not found');
     }
     if ('title' in payload) {
-      blog.title = payload?.title;
+      gem.title = payload?.title;
     }
 
-    if ('blogCcontent' in payload) {
-      for (let i = 0; i < Object.values(payload.blogCcontent).length; i++) {
-        blog.blogCcontent[i] = payload?.blogCcontent[i];
+    if ('content' in payload) {
+      for (let i = 0; i < Object.values(payload.content).length; i++) {
+        gem.content[i] = payload?.content[i];
       }
   
      
     }
 
     if ('metaDescription' in payload) {
-      blog.metaDescription = payload?.metaDescription;
+      gem.metaDescription = payload?.metaDescription;
     }
 
     if ('video' in payload) {
-      const video = blog.video || { url: '', alt: '', name: '', link: '', order: 0, categories: [] }
+      const video = gem.video || { url: '', alt: '', name: '', link: '', order: 0, categories: [] }
 
       if (payload.video.alt) {
         video.alt = payload?.video.alt;
@@ -235,16 +236,16 @@ export class GemMicroService {
         video.order = payload?.video.order;
 
       }
-      blog.video = video;
+      gem.video = video;
 
     }
 
     if ('categories' in payload) {
-      blog.categories = payload?.categories;
+      gem.categories = payload?.categories;
     }
 
-    if ('URL' in payload) {
-      blog.URL = payload?.URL;
+    if ('url' in payload) {
+      gem.url = payload?.url;
     }
 
     if ('images' in payload) {
@@ -252,14 +253,144 @@ export class GemMicroService {
       //   const element = array[index];
         
       // }
-        blog.images = payload.images;
+        gem.images = payload.images;
     }
 
-    await blog.save();
-    blog = blog.toObject();
-    return OK(blog);
+    if ('mapimages' in payload) {
+        gem.mapimages = payload.mapimages;
+    }
 
-  }
+
+    if ('sound' in payload) {
+      const sound = gem.sound || { url: '', alt: '', name: '', link: '', order: 0, categories: [] }
+
+      if (payload.sound.alt) {
+        sound.alt = payload?.sound.alt;
+
+      }
+      if (payload.sound.name) {
+        sound.name = payload?.sound.name;
+
+      }
+      if (payload.sound.link) {
+        sound.link = payload?.sound.link;
+
+      }
+      if (payload.sound.categories) {
+        sound.categories = payload?.sound.categories;
+
+      }
+
+      if (payload.sound.order) {
+        sound.order = payload?.sound.order;
+
+      }
+      gem.sound = sound;
+
+
+      if ('padcast' in payload) {
+        const padcast = gem.padcast || { url: '', alt: '', name: '', link: '', order: 0, categories: [] }
+  
+        if (payload.padcast.alt) {
+          padcast.alt = payload?.padcast.alt;
+  
+        }
+        if (payload.padcast.name) {
+          padcast.name = payload?.padcast.name;
+  
+        }
+        if (payload.padcast.link) {
+          padcast.link = payload?.padcast.link;
+  
+        }
+        if (payload.padcast.categories) {
+          padcast.categories = payload?.padcast.categories;
+  
+        }
+  
+        if (payload.padcast.order) {
+          padcast.order = payload?.padcast.order;
+  
+        }
+        gem.padcast = padcast;
+      }
+        if('table' in payload){
+          const table = gem.table || { color: [], ductColor: '', opacity: '', kelivazh: '', jala: '' , zaribShekast: '', hardness:0 ,weigth:2.2 ,system:'', price:0,rare:true,boreshImg:{url:'',alt:'',name:'',link:'',order:0,categories:''} , order:1}
+
+          if(payload.table.color){
+            table.color = payload?.table.color;
+
+          }
+          if(payload.table.ductColor){
+            table.ductColor = payload?.table.ductColor;
+
+          }
+          if(payload.table.opacity){
+            table.opacity = payload?.table.opacity;
+
+          }
+          if(payload.table.kelivazh){
+            table.kelivazh = payload?.table.kelivazh;
+
+          }
+          if(payload.table.jala){
+            table.jala = payload?.table.jala;
+
+          }
+          if(payload.table.zaribShekast){
+            table.zaribShekast = payload?.table.zaribShekast;
+
+          }
+          if(payload.table.hardness){
+            table.hardness = payload?.table.hardness;
+
+          }
+          if(payload.table.weigth){
+            table.weigth = payload?.table.weigth;
+
+          }
+          if(payload.table.system){
+            table.system = payload?.table.system;
+
+          }
+          if(payload.table.price){
+            table.price = payload?.table.price;
+
+          }
+          if(payload.table.order){
+            table.order = payload?.table.order;
+
+          }
+   
+
+          if(payload.table.order){
+            table.order = payload?.table.order;
+          }
+
+          gem.table = table;
+        }
+
+        if('popularity' in payload){
+          
+          gem.popularity = payload?.popularity;
+        }
+        if('boresh' in payload){
+          const boresh = gem.boresh || { order: 0, boreshImg:{}}
+       
+          boresh.order = payload?.boresh.order;
+          boresh.boreshImg = payload?.boresh.boreshImg;
+
+        }
+          gem.boresh = payload?.boresh;
+
+    }
+
+    await gem.save();
+    gem = gem.toObject();
+    return OK(gem);
+
+  
+}
 
 
 async updateImages(payload:any){
@@ -267,7 +398,7 @@ async updateImages(payload:any){
  if('url' in payload){
   $set['images.$.url']= payload.url;
  }
- const myImage = await this.blogRepo.updateOne({
+ const myImage = await this.gemRepo.updateOne({
 
     _id: str2objectId(payload._id),
     'images._id' : str2objectId(payload._imageId),
@@ -280,10 +411,12 @@ async updateImages(payload:any){
 
 
 }
-
-
-
-
-
-
 }
+
+
+
+
+
+
+
+

@@ -1,8 +1,9 @@
 import { Controller, Get } from '@nestjs/common';
-import { BlogMicroService } from './gem-micro.service';
+import {  GemMicroService } from './gem-micro.service';
 import { MessagePattern, Payload } from '@nestjs/microservices';
 import { BlogPattern } from '@res/common/proxy/blog';
-import { IBlog,  IEditeBlog,  IFindAllBlog, IFindOneId, Ivisual } from '@libs/interface';
+import { IBlog,  IEditeBlog,  IEditeGem,  IFindAllBlog, IFindAllGem, IFindOneId, IGem, Ivisual } from '@libs/interface';
+import { GemPattern } from '@res/common/proxy/gem';
 
 @Controller()
 export class GemMicroController {
@@ -10,35 +11,35 @@ export class GemMicroController {
 
 
 
-  @MessagePattern(BlogPattern.ADD_BLOG)
-  addBlog(@Payload() payload: IBlog) {
-    return this.blogMicroService.addBlog(payload);
+  @MessagePattern(GemPattern.ADD_GEM)
+  addGem(@Payload() payload: IGem) {
+    return this.gemMicroService.addGem(payload);
   }
 
 
-  @MessagePattern(BlogPattern.FIND_ALL_BLOG)
-  findAllBlog(@Payload() payload: IFindAllBlog) {
-    return this.blogMicroService.findAllBlog(payload);
+  @MessagePattern(GemPattern.FIND_ALL_GEM)
+  findAllBlog(@Payload() payload: IFindAllGem) {
+    return this.gemMicroService.findAllGem(payload);
   }
 
-  @MessagePattern(BlogPattern.FIND_ONE_BLOG)
+  @MessagePattern(GemPattern.FIND_ONE_GEM)
   findOneBlog(@Payload() payload: IFindOneId) {
-    return this.blogMicroService.findOneBlog(payload);
+    return this.gemMicroService.findOneGem(payload);
   }
 
-  @MessagePattern(BlogPattern.DELETE_BLOG)
+  @MessagePattern(GemPattern.DELETE_GEM)
   deleteOneBlog(@Payload() payload: IFindOneId) {
-    return this.blogMicroService.deleteOneBlog(payload);
+    return this.gemMicroService.deleteOneGem(payload);
   }
 
-  @MessagePattern(BlogPattern.UPDATE_IMAGE)
+  @MessagePattern(GemPattern.UPDATE_IMAGE)
   updateImage(@Payload() payload: any) {
-    return this.blogMicroService.updateImages(payload);
+    return this.gemMicroService.updateImages(payload);
   }
 
-  @MessagePattern(BlogPattern.UPDATE_BLOG)
-  updateBlog(@Payload() payload: IEditeBlog) {
-    return this.blogMicroService.updateBlog(payload);
+  @MessagePattern(GemPattern.UPDATE_GEM)
+  updateBlog(@Payload() payload: IEditeGem) {
+    return this.gemMicroService.updateGem(payload);
   }
 
 

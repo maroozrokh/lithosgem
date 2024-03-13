@@ -18,25 +18,28 @@ export class BlogMicroService {
 
 
   constructor(
-    private readonly blogRepo: BlogRepository, private readonly blogContentRepo: BlogContentRepository, private readonly imageRepo: ImageRepository, private readonly adminRepo: AdminRepository) { }
+    private readonly blogRepo: BlogRepository, 
+    private readonly blogContentRepo: BlogContentRepository,
+     private readonly imageRepo: ImageRepository, 
+     private readonly adminRepo: AdminRepository) { }
 
 
 
-  async addIMG(payloadIMG: Ivisual) {
+  // async addIMG(payloadIMG: Ivisual) {
 
-    const image = await this.imageRepo.create({
-      payloadIMG,
-    });
-    return (image);
-  }
+  //   const image = await this.imageRepo.create({
+  //     payloadIMG,
+  //   });
+  //   return (image);
+  // }
 
 
-  async addContent(payload: IOcontent) {
-    const content = await this.blogContentRepo.create({
-      payload,
-    });
-    return (content);
-  }
+  // async addContent(payload: IOcontent) {
+  //   const content = await this.blogContentRepo.create({
+  //     payload,
+  //   });
+  //   return (content);
+  // }
 
   async addBlog(payload: IBlog) {
     const blog = await this.blogRepo.addBlog(payload);

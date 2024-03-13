@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
  import { AProxy } from '../base/proxy-service';
 import { GemPattern } from './enum';
-import { IBlog,  IEditeGem,   IFindAllGem, IFindOneId, IGem } from '@libs/interface';
+import { IEditeGem,   IFindAllGem, IFindOneId, IGem } from '@libs/interface';
  
  
 

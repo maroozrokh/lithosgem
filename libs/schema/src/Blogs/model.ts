@@ -8,7 +8,7 @@ export type BlogDocument = Blog & Document;
 export const BLOG = 'Blog';
 
 
-// @Schema({ _id: true })
+@Schema({ _id: true })
 export class Iimage implements Ivisual {
     // @Prop({ required: false, unique: true, auto: true, })
     // _id?: Types.ObjectId;

@@ -17,7 +17,6 @@ import { GemProxy } from './proxy.service';
     },
     GemProxy,
   ],
-  exports: [    GemProxy,
-  ],
+  exports: [    GemProxy],
 })
 export class GemProxyModule {}

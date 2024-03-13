@@ -35,8 +35,8 @@ export class GemTable extends BaseModel implements IGemTable {
     price?:number;
     @Prop({ required: false, default: true })
     rare?:boolean;
-    @Prop({ required: false, default: [], _id : true, type: Array<Iimage> })
-    boreshImg?:Iimage[];
+    // @Prop({ required: false, default: [], _id : true, type: Array<Iimage> })
+    // boreshImg?:Iimage[];
     @Prop({ required: false, default: 2 })
     order?: number;
 

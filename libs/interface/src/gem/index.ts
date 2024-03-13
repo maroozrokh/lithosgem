@@ -17,7 +17,7 @@ export interface IGem {
     url:string;
     popularity: number;
     boresh?: IBoresh;
-    table: IGemTable;
+    table?: IGemTable;
     views?:number;
     updatedAt?:Date;
     createdAt?: Date;
@@ -40,10 +40,10 @@ export interface IGem {
     hardness?:number;
     weigth?:number;
     system?:string;
-    shops?:Array<string>;
+    // shops?:Array<string>;
     price?:number;
     rare?:boolean;
-    boreshImg?:Array<Ivisual>;
+    // boreshImg?:Array<Ivisual>;
     order?: number;
 
   }

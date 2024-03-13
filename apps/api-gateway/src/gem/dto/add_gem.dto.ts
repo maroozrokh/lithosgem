@@ -3,6 +3,8 @@ import { IGem, IOcontent, Ivisual } from "@libs/interface";
 import { ApiProperty } from "@nestjs/swagger";
 import { IsArray, IsBoolean, IsNumber, IsObject, IsString } from "class-validator";
 import { ContentDto, VisualDto } from "../../blog/dto/add_blog.dto";
+import { Transform } from 'class-transformer';
+import { ObjectId, SafeMongoIdTransform } from '@libs/schema';
 
 
 
@@ -17,6 +19,15 @@ export class BoreshDto implements IBoresh{
 }
 
 export class GemTableDto implements IGemTable{
+    //   @ApiProperty({
+    //     description: 'Id',
+    //     required: true,
+    //     type: String,
+    //     default: '64626e05af7a2a51be1b61e2',
+    //   })
+    //   @Transform((value) => SafeMongoIdTransform(value))
+    //   _id: typeof ObjectId | string;
+
     @ApiProperty({ example: ['red','blue'] })
     @IsArray()
     color?: string[];
@@ -51,9 +62,7 @@ export class GemTableDto implements IGemTable{
     @ApiProperty({ example: true})
     @IsBoolean()
     rare?: boolean;
-    @ApiProperty({type: ()=>VisualDto ,isArray:true})
-    @IsArray()
-    boreshImg?: VisualDto[];
+
     @ApiProperty({ example: 1})
     @IsNumber()
     order?: number;
@@ -61,6 +70,10 @@ export class GemTableDto implements IGemTable{
 }
 
 export class AddGemDto implements IGem {
+
+  
+
+
     @ApiProperty({ example: 'gem title' })
     @IsString()
     title: string;
@@ -69,7 +82,7 @@ export class AddGemDto implements IGem {
     metaDescription: string;
     @ApiProperty({type: ()=>ContentDto ,isArray:true})
     @IsArray()
-    content: IOcontent[];
+    content: ContentDto[];
     @ApiProperty()
     categories: string[];
     @ApiProperty({type: ()=>VisualDto ,isArray:true})
@@ -78,10 +91,13 @@ export class AddGemDto implements IGem {
     @ApiProperty({type: ()=>VisualDto ,isArray:true})
     @IsArray()
     mapimages?: VisualDto[];
+    @ApiProperty({type: ()=>VisualDto})
     @IsObject()
     video?: VisualDto;
+    @ApiProperty({type: ()=>VisualDto})
     @IsObject()
     sound?: VisualDto;
+    @ApiProperty({type: ()=>VisualDto})
     @IsObject()
     padcast?: VisualDto;
     @ApiProperty({example:"www.lithosgem.com/gem/firooze"})
@@ -89,10 +105,12 @@ export class AddGemDto implements IGem {
     @ApiProperty({example:5})
     @IsNumber()
     popularity: number;
+    @ApiProperty({type: ()=>BoreshDto})
     @IsObject()
     boresh?: BoreshDto;
+    @ApiProperty({type: ()=>GemTableDto})
     @IsObject()
-    table: GemTableDto;
+    table?: GemTableDto;
     @ApiProperty()
     @IsNumber()
     views?: number;
