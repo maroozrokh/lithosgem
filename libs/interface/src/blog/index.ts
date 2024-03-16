@@ -38,8 +38,8 @@ export interface IBlog {
     alt:string;
     name?: string;
     link?: string;
-    order:number;
-    categories:string[];
+    order?:number;
+    categories?:string[];
     // type?:string;
   }
 

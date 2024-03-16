@@ -1,16 +1,10 @@
-import { IAdmin, IAdminAccess, IAdminProfile, IBlog, IContact, IOcontent, Ivisual, Role, TAdmin } from "@libs/interface";
-import { ImageSchima, ObjectId, SafeMongoIdTransform } from "@libs/schema";
+import { IBlog,IOcontent, Ivisual, TAdmin } from "@libs/interface";
 import { ApiProperty } from "@nestjs/swagger";
-import { Transform } from 'class-transformer';
 
 import {
     IsArray,
-    IsBoolean,
-    IsDate,
-    IsEnum,
     IsNumber,
     IsObject,
-    IsOptional,
     IsString,
   } from 'class-validator';
 
@@ -38,10 +32,10 @@ export class VisualDto implements Ivisual{
     link?: string;
     @ApiProperty({ example: 1 })
     @IsNumber()
-    order: number;
+    order?: number;
     @ApiProperty()
     @IsArray()
-    categories:Array<string>;
+    categories?:Array<string>;
 
 }
  export class ContentDto implements IOcontent{

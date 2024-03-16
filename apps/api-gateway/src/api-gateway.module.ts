@@ -7,6 +7,8 @@ import { ThrottlerConfigAsync, ThrottlerService } from '@res/common/config/app/t
 import { BlogModule } from './blog/blog.module';
 import { GemModule } from './gem/gem.module';
 import { GemProxyModule } from '@res/common/proxy/gem';
+import { AboutUsModule } from './contact/aboutUs.module';
+import { AboutProxyModule } from '@res/common/proxy/aboutUs';
 
 
 @Module({
@@ -15,11 +17,13 @@ import { GemProxyModule } from '@res/common/proxy/gem';
     ThrottlerModule.forRootAsync({
       ...ThrottlerConfigAsync,
     }),
-    BlogProxyModule,
+     AuthModule, 
+     BlogProxyModule,
     BlogModule,
-    AuthModule,
     GemModule,
-    GemProxyModule
+    GemProxyModule,
+    AboutUsModule,
+    AboutProxyModule
 
   ],
   providers: [ThrottlerService],

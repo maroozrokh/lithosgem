@@ -375,7 +375,7 @@ export class GemMicroService {
           gem.popularity = payload?.popularity;
         }
         if('boresh' in payload){
-          const boresh = gem.boresh || { order: 0, boreshImg:{}}
+          const boresh = gem.boresh || { order: 0, boreshImg:[]}
        
           boresh.order = payload?.boresh.order;
           boresh.boreshImg = payload?.boresh.boreshImg;

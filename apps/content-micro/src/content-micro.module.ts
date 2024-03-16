@@ -9,6 +9,10 @@ import { GemModule } from 'apps/api-gateway/src/gem/gem.module';
 import { GemProxyModule } from '@res/common/proxy/gem';
 import { ConfigModule } from '@nestjs/config';
 import { GemMicroModule } from './gem-micro/gem-micro.module';
+import { AboutProxyModule } from '@res/common/proxy/aboutUs';
+import { AboutUsController } from 'apps/api-gateway/src/contact/aboutUs.controller';
+import { AboutUsMicroModule } from './aboutUs-micro/aboutUs-micro.module';
+import { AboutUsModule } from 'apps/api-gateway/src/contact/aboutUs.module';
 
 @Module({
   imports: [
@@ -22,6 +26,9 @@ import { GemMicroModule } from './gem-micro/gem-micro.module';
     GemModule,
     GemProxyModule,
     GemMicroModule,
+    AboutProxyModule,
+    AboutUsMicroModule,
+    AboutUsModule
   ],
 
 })

@@ -29,4 +29,8 @@ import { AuthCache } from './auth.cache';
   providers: [AuthCache],
   exports: [CM,AuthCache],
 })
-export class CacheModule { }
+export class CacheModule {
+  static register(): import("@nestjs/common").Type<any> | import("@nestjs/common").DynamicModule | Promise<import("@nestjs/common").DynamicModule> | import("@nestjs/common").ForwardReference<any> {
+    throw new Error('Method not implemented.');
+  }
+}

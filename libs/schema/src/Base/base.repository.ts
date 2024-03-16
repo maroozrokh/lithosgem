@@ -8,6 +8,8 @@ export abstract class BaseRepository<T> {
     this.entity = entity;
   }
 
+  
+
   public async create(data: T | any): Promise<T | any> {
     return await this.entity.create(data);
   }

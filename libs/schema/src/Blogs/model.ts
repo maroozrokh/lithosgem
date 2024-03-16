@@ -24,7 +24,7 @@ export class Iimage implements Ivisual {
     @Prop({ required: true })
     order:number;
     @Prop({ required: true})
-    categories:string[];
+    categories?:string[];
     
 
 }
@@ -50,8 +50,8 @@ export class Blog extends BaseModel implements IBlog {
     @Prop({ required: true, default: 'meta description' })
     metaDescription: string;
     @Prop({ required: false, default: [], _id : true, type: Array<Iimage> })
-    images: Iimage[];
-    @Prop({ required: false, default: null})
+    images: Ivisual[];
+    @Prop({ required: false, default: {}, type: Iimage})
     video?:Iimage;
     @Prop({ required: true, default: false })
     categories: string[];

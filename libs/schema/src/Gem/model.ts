@@ -46,7 +46,7 @@ export class IOBoresh implements IBoresh{
     @Prop({ required: false, default: 1 })
     order: number;
     @Prop({ required: false,type: Array<Iimage>, _id:true })
-    boreshImg?: Iimage[];
+    boreshImg?: Ivisual[];
 
 }
 
@@ -63,10 +63,10 @@ export class Gem extends BaseModel implements IGem {
     content: IOcontents[];
     @Prop({ required: true, default: false })
     categories: string[];
-    @Prop({ required: false, default: [], _id : true, type: Array<Iimage> })
-    images?: Iimage[];
-    @Prop({ required: false, default: [], _id : true, type: Array<Iimage> })
-    mapimages?:   Iimage[];
+    @Prop({ required: false, default: [], _id : true, type: Array<Ivisual> })
+    images?: Ivisual[];
+    @Prop({ required: false, default: [], _id : true, type: Array<Ivisual> })
+    mapimages?:   Ivisual[];
     @Prop({ required: false, default: null,type: Iimage})
     video?: Iimage;
     @Prop({ required: false, default: null,type: Iimage})
@@ -77,8 +77,8 @@ export class Gem extends BaseModel implements IGem {
     url: string;
     @Prop({ required: true, default: 5})
     popularity: number;
-    @Prop({ required: false, default: [], _id : true, type: IOBoresh })
-    boresh: IOBoresh;
+    @Prop({ required: false, default: [], _id : true, type: Array<Ivisual> })
+    boresh?: IOBoresh;
     @Prop({ required: false, _id : true, type: IOGemTable, default: () => new mongoose.Types.ObjectId() })
 
     // @Prop({ required: false, _id : true, type: IOGemTable })
