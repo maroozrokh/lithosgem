@@ -24,6 +24,11 @@ export abstract class BaseRepository<T> {
   public findOneById(_id: any) {
     return this.entity.findOne({ _id });
   }
+
+  public findOneByName(name: any) {
+    return this.entity.findOne(name);
+  }
+
   async findOne(pipeline?: Array<any>, options?: any) {
     const data = await this.entity.aggregate(pipeline, options);
     if (data && data.length > 0) {

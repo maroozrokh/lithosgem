@@ -6,3 +6,6 @@ export * from './Gem';
 export * from './Blogs';
 export * from './FAQ';
 export * from './ImageSchima';
+// export * from './SettingSchema';
+export * from './SettingSchema/Cat'
+// export * from './Setting/Cat'

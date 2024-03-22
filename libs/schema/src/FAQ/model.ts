@@ -21,7 +21,7 @@ export class Qa implements IQA {
     answer?: string;
 }
 
-export class FAQ extends BaseModel implements IFaq {
+export class FAQ extends BaseModel {
     @Prop({ required: true, default: 'title' })
     title: string;
     @Prop({ required: true, default: 'content' })

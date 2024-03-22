@@ -8,3 +8,7 @@ export interface IPagination {
 export interface IFindOneId {
   _id: typeof ObjectId | string;
 }
+
+export interface IFindOneByCondition{
+  condition:string;
+}

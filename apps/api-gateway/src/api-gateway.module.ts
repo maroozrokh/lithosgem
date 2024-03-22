@@ -9,6 +9,8 @@ import { GemModule } from './gem/gem.module';
 import { GemProxyModule } from '@res/common/proxy/gem';
 import { AboutUsModule } from './contact/aboutUs.module';
 import { AboutProxyModule } from '@res/common/proxy/aboutUs';
+import { SettingProxyModule } from '@res/common/proxy/setting';
+import { CatModule } from './setting/category/category.module';
 
 
 @Module({
@@ -23,7 +25,9 @@ import { AboutProxyModule } from '@res/common/proxy/aboutUs';
     GemModule,
     GemProxyModule,
     AboutUsModule,
-    AboutProxyModule
+    AboutProxyModule,
+    SettingProxyModule,
+    CatModule
 
   ],
   providers: [ThrottlerService],
