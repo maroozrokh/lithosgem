@@ -8,27 +8,26 @@ export interface IAdmin {
   phone?: number;
   password?: string;
   role: Role;
-  profile: IAdminProfile;
-  access: IAdminAccess;
-  createdAt: Date;
+  // access: IAdminAccess;
+  createdAt?: Date;
 }
 export type TAdmin = IAdmin | string | typeof ObjectId;
-export interface IAddAccountAdmin {
+export interface IAddAdmin {
   name: string;
   email?: string;
   password?: string;
   role: Role;
-  profile: IAdminProfile;
-  access: IAdminAccess;
+  // profile: IAdminProfile;
+  // access: IAdminAccess;
 }
-export interface IAdminUpdateProfile {
-  _id: string;
+export interface IUpdateAdmin {
+  _id?: string;
   name?: string;
   email?: string;
   password?: string;
   role?: Role;
-  profile?: IAdminProfile;
-  access?: IAdminAccess;
+  // profile?: IAdminProfile;
+  // access?: IAdminAccess;
 }
 export interface ILoginAdmin {
   email: string;
@@ -37,6 +36,7 @@ export interface ILoginAdmin {
 export interface IFindAllAdmin {
   page?: number;
   count?: number;
+  admin?: TAdmin;
   query?: any;
 }
 export interface IFindOneAdmin {
@@ -48,15 +48,22 @@ export interface IAdminProfile {
   description?: string;
   [key: string]: any;
 }
-export interface IAdminAccess {
-  userRemove?: boolean;
-  userAdd?: boolean;
-  editeBlog?: boolean;
-  addBlog?:boolean;
-  deleteBlog?:boolean;
-  [key: string]: any;
-}
+// export interface IAdminAccess {
+//   userRemove?: boolean;
+//   userAdd?: boolean;
+//   editeBG?: boolean;
+//   addBG?:boolean;
+//   deleteBlog?:boolean;
+//   addContent?:boolean;
+//   editeddContent?:boolean;
+//   allAccess?:boolean;
+//   [key: string]: any;
+// }
 
+
+// export interface IAdminAccess{
+//   superAdmin
+// }
 export interface IForgetPasswordAdmin {
   email?: string;
   phone?: number;

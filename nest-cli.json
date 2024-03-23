@@ -65,6 +65,15 @@
       "compilerOptions": {
         "tsConfigPath": "apps/content-micro/tsconfig.app.json"
       }
+    },
+    "admin-micro": {
+      "type": "application",
+      "root": "apps/admin-micro",
+      "entryFile": "main",
+      "sourceRoot": "apps/admin-micro/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/admin-micro/tsconfig.app.json"
+      }
     }
   },
   "compilerOptions": {

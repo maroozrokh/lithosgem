@@ -3,10 +3,12 @@ export enum AdminPattern {
     FIND_ALL_ADMIN = 'find.all.admin',
     FIND_ONE_ADMIN = 'find.one.admin',
     LOGIN = 'login.admin',
-    ADD_ACCOUNT = 'add.account.admin',
     PROFILE = 'profile.admin',
-    UPDATE_PROFILE = 'update.profile.admin',
+    UPDATE_ADMIN = 'update.admin',
+    ADD_ADMIN = 'add.admin',
     CREATE_SUPER_ADMIN = 'create.super.admin',  
+    DELETE_ADMIN = 'delete.admin',
+
     
   }
   

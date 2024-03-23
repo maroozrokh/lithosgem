@@ -28,6 +28,7 @@ export interface IFindAllCat extends IPagination{
 }
 
 export interface IColor{
+    _id?:any;
     colorName:string;
     colorCode: string;
     updatedAt?:Date;
@@ -36,6 +37,7 @@ export interface IColor{
 }
 
 export interface IEditeColor{
+    _id?:any;
     colorName:string;
     colorCode: string;
  

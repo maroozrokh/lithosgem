@@ -2,7 +2,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 import { BaseModel } from '../Base/base.model';
 import { Mixed } from '../Base/helper';
-import { IAdmin, IAdminAccess, IAdminProfile } from '@libs/interface/admin';
+import { IAdmin,  IAdminProfile } from '@libs/interface/admin';
 import { Role } from '@libs/interface';
 export type AdminDocument = Admin & Document;
 export const ADMIN = 'Admin';
@@ -15,20 +15,20 @@ export class AdminProfile implements IAdminProfile {
     @Prop({ required: false, default: false })
     description?: string;
 }
-export class AdminAccess implements IAdminAccess {
-  @Prop({ required: false, default: false })
-  userRemove: boolean;
-  @Prop({ required: false, default: false })
-  userAdd: boolean;
-  @Prop({ required: false, default: false })
-  editeBlog?: boolean;
-  @Prop({ required: false, default: false })
-  addBlog?:boolean;
-  @Prop({ required: false, default: false })
-  deleteBlog?:boolean;
+// export class AdminAccess implements IAdminAccess {
+//   @Prop({ required: false, default: false })
+//   userRemove: boolean;
+//   @Prop({ required: false, default: false })
+//   userAdd: boolean;
+//   @Prop({ required: false, default: false })
+//   editeBlog?: boolean;
+//   @Prop({ required: false, default: false })
+//   addBlog?:boolean;
+//   @Prop({ required: false, default: false })
+//   deleteBlog?:boolean;
 
 
-}
+// }
 
 @Schema({
   timestamps: false,
@@ -50,8 +50,8 @@ export class Admin extends BaseModel implements IAdmin {
   role: Role;
   @Prop({ required: false, default: null, type: Mixed })
   profile: AdminProfile;
-  @Prop({ required: false, default: null, type: Mixed })
-  access: AdminAccess;
+//   @Prop({ required: false, default: null, type: Mixed })
+//   access: AdminAccess;
 }
 export const AdminSchema = SchemaFactory.createForClass(Admin);
 export const AdminFeature = {

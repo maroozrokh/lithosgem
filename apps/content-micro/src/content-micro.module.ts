@@ -13,6 +13,8 @@ import { AboutUsMicroModule } from './aboutUs-micro/aboutUs-micro.module';
 import { AboutUsModule } from 'apps/api-gateway/src/contact/aboutUs.module';
 import { CatMicroModule } from './setting-micro/category-micro/cat-micro.module';
 import { CatModule } from 'apps/api-gateway/src/setting/category/category.module';
+import { ColorMicroModule } from './setting-micro/color-micro/color-micro.module';
+import { ColorModule } from 'apps/api-gateway/src/setting/colors/colormodule';
 
 @Module({
   imports: [
@@ -31,7 +33,8 @@ import { CatModule } from 'apps/api-gateway/src/setting/category/category.module
     AboutUsModule,
     SettingProxyModule,
     CatMicroModule,
-    CatModule
+    CatModule,
+    ColorMicroModule,ColorModule
   ],
 
 })

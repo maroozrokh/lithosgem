@@ -1,22 +1,22 @@
+import { EmailMicroConfig } from '@libs/common';
 import { Global, Module } from '@nestjs/common/decorators';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ClientProxyFactory } from '@nestjs/microservices';
-import { AdminPattern } from './enum';
-import { AdminProxy } from './proxy-service';
-import { AdminMicroConfig } from '@res/common';
+import { EmailPattern } from './enum';
+import { EmailClientProxy } from './proxy.service';
 @Global()
 @Module({
   imports: [ConfigModule],
   providers: [
     {
-      provide: AdminPattern.NAME,
+      provide: EmailPattern.NAME,
       inject: [ConfigService],
       useFactory: async () => {
-        return ClientProxyFactory.create(AdminMicroConfig());
+        return ClientProxyFactory.create(EmailMicroConfig());
       },
     },
-    AdminProxy,
+    EmailClientProxy,
   ],
-  exports: [AdminProxy],
+  exports: [EmailClientProxy],
 })
-export class AdminProxyModule {}
+export class EmailProxyModule {}
