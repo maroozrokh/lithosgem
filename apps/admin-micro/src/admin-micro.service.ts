@@ -1,5 +1,5 @@
 import { Admin } from './../../../libs/schema/src/Admin/model';
-import { IAddAdmin, IAdmin, IFindAllAdmin, IFindOneId, IUpdateAdmin, Role } from '@libs/interface';
+import { IAddAdmin, IAdmin, IFindAllAdmin, IFindOneId, IUpdateAdmin, IUpdateAdminProfile, Role } from '@libs/interface';
 import { AdminRepository, str2objectId } from '@libs/schema';
 import { Injectable } from '@nestjs/common';
 import { AuthHelperService } from '@res/common/auth';
@@ -149,19 +149,44 @@ export class AdminMicroService {
     if (payload?.role) {
       admin.role = payload?.role;
     }
-    // if ('profile' in payload) {
-    //   const profile = admin?.profile || { image: '', description: '' };
-    //   if (payload.profile?.image) {
-    //     profile.image = payload.profile?.image;
-    //   }
-    //   if (payload.profile?.description) {
-    //     profile.description = payload.profile?.description;
-    //   }
-    //   admin.profile = profile;
-    // }
+
+    if ('profile' in payload) {
+      const profile = admin?.profile || {  url: '', alt: '', name: '', link: '', order: 0, categories: []  };
+      if (payload.profile?.url) {
+        profile.url = payload.profile?.url;
+      }
+
+      admin.profile = profile;
+    }
     await admin.save();
     admin = admin.toObject();
     delete admin?.password;
     return OK({ admin });
   }
+
+
+
+  async updateAdminImage(payload: IUpdateAdminProfile) {
+    let admin = await this.adminRepo
+      .findOneById(str2objectId(payload?._id));
+    if (!admin) {
+      return BAD_REQUEST('Opps! admin not found');
+    }
+    if (payload?.name) {
+      admin.name = payload?.name;
+    }
+    if ('profile' in payload) {
+      const profile = admin?.profile || {  url: '', alt: '', name: '', link: '', order: 0, categories: []  };
+      if (payload.profile?.url) {
+        profile.url = payload.profile?.url;
+      }
+    
+      admin.profile = profile;
+    }
+    await admin.save();
+    admin = admin.toObject();
+    return OK({ admin });
+  }
+
+
 }

@@ -2,7 +2,7 @@ import { Controller, Get } from '@nestjs/common';
 import { AdminMicroService } from './admin-micro.service';
 import { MessagePattern, Payload } from '@nestjs/microservices';
 import { AboutUsPattern, AdminPattern } from '@res/common';
-import { IAdmin, IFindAllAdmin, IFindOneId, ILoginAdmin, IUpdateAdmin } from '@libs/interface';
+import { IAdmin, IFindAllAdmin, IFindOneId, ILoginAdmin, IUpdateAdmin, IUpdateAdminProfile } from '@libs/interface';
 
 @Controller()
 export class AdminMicroController {
@@ -27,6 +27,13 @@ export class AdminMicroController {
   updateAdmin(@Payload() payload: IUpdateAdmin) {
     return this.adminMicroService.updateAdmin(payload);
   }
+
+
+  @MessagePattern(AdminPattern.UPDATE_ADMIN_IMG)
+  updateAdminImage(@Payload() payload: IUpdateAdminProfile) {
+    return this.adminMicroService.updateAdminImage(payload);
+  }
+
 
   
   @MessagePattern(AdminPattern.DELETE_ADMIN)

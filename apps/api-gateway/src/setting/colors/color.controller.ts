@@ -41,8 +41,8 @@ export class ColorController {
   @Post()
   // @Auth(Role.ADMIN,Role.SUPER_ADMIN)
   addColor(@Body() payload: AddColorDto) {
-   
-    return this.colorService.addColor(payload);
+   console.log(payload);
+  return this.colorService.addColor(payload);
   }
 
 

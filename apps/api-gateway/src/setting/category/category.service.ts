@@ -10,21 +10,21 @@ export class CatService {
   constructor(private readonly settingProxy: SettingProxy) {}
 
   addCat(payload: ICategory) {
-    return this.settingProxy.addSetting(payload);
+    return this.settingProxy.addCategory(payload);
   }
 
   findAllCat(payload: IFindAllCat) {
-    return this.settingProxy.findAllSetting(payload);
+    return this.settingProxy.findAllCategory(payload);
   }
   findOneCat(payload: IFindOneId) {
-    return this.settingProxy.findOneSetting(payload);
+    return this.settingProxy.findOneCategory(payload);
   }
   deleteOneCat(payload: IFindOneId) {
-    return this.settingProxy.deleteSetting(payload);
+    return this.settingProxy.deleteCategory(payload);
   }
 
   editeCat(payload: IEditeCategory) {
-    return this.settingProxy.updateSetting(payload);
+    return this.settingProxy.updateCategory(payload);
   }
 
 

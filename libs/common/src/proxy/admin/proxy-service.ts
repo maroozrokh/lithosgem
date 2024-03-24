@@ -2,7 +2,7 @@ import { Inject, Injectable } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { AdminPattern } from './enum';
 import { AProxy } from '../base/proxy-service';
-import { IAddAdmin, IAdmin, IFindAllAdmin, IFindOneAdmin, IFindOneId, IUpdateAdmin } from '@libs/interface';
+import { IAddAdmin, IAdmin, IFindAllAdmin, IFindOneAdmin, IFindOneId, IUpdateAdmin, IUpdateAdminProfile } from '@libs/interface';
 
 
 @Injectable()
@@ -35,6 +35,10 @@ export class AdminProxy extends AProxy<AdminProxy> {
 
   updateAdmin(payload: IUpdateAdmin) {
     return this.send(AdminPattern.UPDATE_ADMIN, payload);
+  }
+
+  updateAdminImage(payload: IUpdateAdminProfile) {
+    return this.send(AdminPattern.UPDATE_ADMIN_IMG, payload);
   }
   // forgetPassword(payload: IForgetPasswordAdmin) {
   //   return this.send(AdminPattern.FORGET_PASSWORD, payload);

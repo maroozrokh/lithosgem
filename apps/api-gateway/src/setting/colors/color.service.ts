@@ -9,21 +9,21 @@ export class ColorService {
   constructor(private readonly settingProxy: SettingProxy) {}
 
   addColor(payload: IColor) {
-    return this.settingProxy.addSetting(payload);
+    return this.settingProxy.addColor(payload);
   }
 
   findAllColor(payload: IFindAllColor) {
-    return this.settingProxy.findAllSetting(payload);
+    return this.settingProxy.findAllColor(payload);
   }
   findOneColor(payload: IFindOneId) {
-    return this.settingProxy.findOneSetting(payload);
+    return this.settingProxy.findOneColor(payload);
   }
   deleteOneColor(payload: IFindOneId) {
-    return this.settingProxy.deleteSetting(payload);
+    return this.settingProxy.deleteColor(payload);
   }
 
   editeColor(payload: IEditeColor) {
-    return this.settingProxy.updateSetting(payload);
+    return this.settingProxy.updateColor(payload);
   }
 
 

@@ -3,32 +3,12 @@ import { Document } from 'mongoose';
 import { BaseModel } from '../Base/base.model';
 import { Mixed } from '../Base/helper';
 import { IAdmin,  IAdminProfile } from '@libs/interface/admin';
-import { Role } from '@libs/interface';
+import { Ivisual, Role } from '@libs/interface';
+import { Iimage } from '../Blogs';
 export type AdminDocument = Admin & Document;
 export const ADMIN = 'Admin';
 
 
-
-export class AdminProfile implements IAdminProfile {
-    @Prop({ required: false, default: false })
-    image?: string;
-    @Prop({ required: false, default: false })
-    description?: string;
-}
-// export class AdminAccess implements IAdminAccess {
-//   @Prop({ required: false, default: false })
-//   userRemove: boolean;
-//   @Prop({ required: false, default: false })
-//   userAdd: boolean;
-//   @Prop({ required: false, default: false })
-//   editeBlog?: boolean;
-//   @Prop({ required: false, default: false })
-//   addBlog?:boolean;
-//   @Prop({ required: false, default: false })
-//   deleteBlog?:boolean;
-
-
-// }
 
 @Schema({
   timestamps: false,
@@ -48,8 +28,8 @@ export class Admin extends BaseModel implements IAdmin {
     type: 'string',
   })
   role: Role;
-  @Prop({ required: false, default: null, type: Mixed })
-  profile: AdminProfile;
+  @Prop({ required: false, default: [], _id : true, type: Array<Iimage> })
+  profile: Ivisual;
 //   @Prop({ required: false, default: null, type: Mixed })
 //   access: AdminAccess;
 }

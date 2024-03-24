@@ -5,6 +5,7 @@ export enum AdminPattern {
     LOGIN = 'login.admin',
     PROFILE = 'profile.admin',
     UPDATE_ADMIN = 'update.admin',
+    UPDATE_ADMIN_IMG = 'update.admin.image',
     ADD_ADMIN = 'add.admin',
     CREATE_SUPER_ADMIN = 'create.super.admin',  
     DELETE_ADMIN = 'delete.admin',

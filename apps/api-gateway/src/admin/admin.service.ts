@@ -1,4 +1,4 @@
-import { IFindAllAdmin, IUpdateAdmin } from '@libs/interface';
+import { IFindAllAdmin, IUpdateAdmin, IUpdateAdminProfile } from '@libs/interface';
 
 import { IAdmin, IBlog,  IEditeBlog, IFindAllBlog, IFindOneId, Ivisual } from '@libs/interface';
 import { BadRequestException, Injectable } from '@nestjs/common';
@@ -27,6 +27,10 @@ export class AdminService {
     return this.adminProxy.updateAdmin(payload);
   }
 
+
+  updateAdminImage(payload: IUpdateAdminProfile) {
+    return this.adminProxy.updateAdminImage(payload);
+  }
 
   async login(email: string, password: string) {
     const admin = await this.adminProxy.login(email, password);

@@ -5,7 +5,7 @@ import { Role } from '@libs/interface';
 import { AdminService } from './admin.service';
 import { LoginDto } from './dto/log_in.dto';
 import { AuthParam } from '@res/common/auth';
-import { EditeAdminDto } from './dto/edite_admin.dto';
+import { EditeAdminDto, EditeAdminImageDto } from './dto/edite_admin.dto';
 import { FindAllAdminDto } from './dto/find_all_admin.dto';
 import { AdminDto } from './dto/add_admin.dto';
 import { FindOneDto } from '../blog/dto/find_one_blog.dto';
@@ -57,14 +57,6 @@ export class AdminController {
   }
 
 
-
-
-
-
-
-
-
-
   @ApiOperation({
     summary: 'Find one admin',
     description: 'Find one admin',
@@ -99,6 +91,20 @@ export class AdminController {
   updateAdmin(
     @AuthParam() admin: any,
     @Body() payload: EditeAdminDto,
+  ) {
+    return this.adminService.updateAdmin({ ...payload, _id: admin?._id });
+  }
+
+
+  @ApiOperation({
+    summary: 'update admin',
+    description: 'update admin',
+  })
+  @Auth(Role.SUPER_ADMIN, Role.ADMIN, Role.WRITER)
+  @Put('/profileimg')
+  updateProfileImage(
+    @AuthParam() admin: any,
+    @Body() payload: EditeAdminImageDto,
   ) {
     return this.adminService.updateAdmin({ ...payload, _id: admin?._id });
   }
