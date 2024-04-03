@@ -52,7 +52,8 @@ export class AdminMicroController {
   }
 
   @MessagePattern(AdminPattern.CREATE_SUPER_ADMIN)
-  superAdminInit() {
+  superAdminInit(@Payload() payload:any) {
+    console.log('Test micro')
     return this.adminMicroService.superAdminInit();
   }
 

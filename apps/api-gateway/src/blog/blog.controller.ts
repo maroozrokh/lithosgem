@@ -20,7 +20,7 @@ export class BlogController {
     description: 'Find all blogs',
   })
   @Get('/blogs')
-  // @Auth(Role.ALL)
+  @Auth(Role.ADMIN , Role.SUPER_ADMIN)
   findAllBlog(@Query() payload: FindAllBlogDto) {
     return this.blogService.findAllBlog(payload);
   }

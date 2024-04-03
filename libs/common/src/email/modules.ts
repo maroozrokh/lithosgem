@@ -1,4 +1,4 @@
-import { EmailMicroConfig } from '@libs/common';
+import { UserMicroConfig } from '../config';
 import { Global, Module } from '@nestjs/common/decorators';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ClientProxyFactory } from '@nestjs/microservices';
@@ -12,7 +12,8 @@ import { EmailClientProxy } from './proxy.service';
       provide: EmailPattern.NAME,
       inject: [ConfigService],
       useFactory: async () => {
-        return ClientProxyFactory.create(EmailMicroConfig());
+        //TODO
+        return ClientProxyFactory.create(UserMicroConfig());
       },
     },
     EmailClientProxy,

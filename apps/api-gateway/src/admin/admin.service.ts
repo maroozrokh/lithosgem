@@ -36,13 +36,14 @@ export class AdminService {
     const admin = await this.adminProxy.login(email, password);
     if (admin?.error) {
       throw new BadRequestException(admin);
-      // console.log('cjsd');
+      
     }
+    console.log('cjsd');
     return admin;
   }
 
-  // superAdmin(payload: IAdmin) {
-  //   return this.adminProxy.addAdmin(payload);
-  // }
+  superAdmin(payload: IAdmin) {  
+    return this.adminProxy.superAdminInit();
+  }
 
 }

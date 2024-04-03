@@ -1,17 +1,26 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { AdminProxyModule, MongoConfigAsync, setupEnv } from '@res/common';
-import { AdminModule } from 'apps/api-gateway/src/admin/admin.module';
+import { AuthModule } from '@res/common/auth';
+import { AdminMicroController } from './admin-micro.controller';
+import { AdminMicroService } from './admin-micro.service';
+import { AdminFeature, AdminRepository } from '@libs/schema';
 
 @Module({
   imports: [
   setupEnv(),
   MongooseModule.forRootAsync(MongoConfigAsync),
-  AdminModule,
+  MongooseModule.forFeature([AdminFeature]),
   AdminProxyModule,
-  AdminMicroModule
+  AuthModule,
+  AdminMicroModule,  
+  // EmailProxyModule,
+
 
 ],
+controllers: [AdminMicroController],
+providers:[AdminMicroService, AdminRepository]
+ 
 
 })
 export class AdminMicroModule {}

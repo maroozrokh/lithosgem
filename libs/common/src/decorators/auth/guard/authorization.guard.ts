@@ -25,10 +25,12 @@ export class AuthorizationGuard implements CanActivate {
       context.getHandler(),
     );
     const user = request.user?.user;
+    console.log('Auth 28' , user);
     const find = activeRole.find((i) => `${i}` === `${user.role}`);
-    if (!find) {
-      return false;
+    console.log('Auth 30' , find);
+    if (parseInt(find) >= 0) {
+      return true;
     }
-    return true;
+    return false;
   }
 }

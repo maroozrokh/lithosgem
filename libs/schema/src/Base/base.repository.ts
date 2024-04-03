@@ -80,9 +80,9 @@ export abstract class BaseRepository<T> {
     if (d) return this.entity.find(d);
     else return this.entity.find();
   }
-
+//check updates
   public updateOneById(_id: any, doc: any, key = '$set') {
-    return this.entity.updateOne({ _id: str2objectId(_id) }, { [key]: doc });
+    return this.entity.updateOne({ _id: str2objectId(_id) }, { [key]: doc } as any);
   }
   public async updateOne(
     filter: any,

@@ -15,6 +15,7 @@ import { Roles } from './roles.decorator';
  * Auth Decorators with Swagger BearerAuth
  * @returns <TFunction extends Function, Y>
  */
+
 export function Auth(...roles: Role[]) {
   return applyDecorators(
     Roles(...roles),
@@ -30,6 +31,7 @@ export function Auth(...roles: Role[]) {
 export const AuthParam = createParamDecorator<unknown, ExecutionContext>(
   async (data: string, ctx: ExecutionContext) => {
     try {
+      console.log('auth 34');
       const param = data || 'user';
       const req = ctx.switchToHttp().getRequest<any>();
       const user: any = req.user[param];

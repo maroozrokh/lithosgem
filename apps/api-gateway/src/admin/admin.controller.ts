@@ -1,3 +1,4 @@
+import { Admin } from './../../../../libs/schema/src/Admin/model';
 import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Post, Put, Query } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { Auth } from '@res/common/decorators/auth';
@@ -111,16 +112,24 @@ export class AdminController {
 
 
 
-  // @ApiOperation({
-  //   summary: 'add super admin',
-  //   description: 'add super admin',
-  // })
-  // @Post('/superadmin')
-  // // @Auth(Role.SUPER_ADMIN)
-  // superAdmin(@Body() payload: AdminDto) {   
-  //   return this.adminService.superAdmin(payload);
-  // }
+  @ApiOperation({
+    summary: 'add super admin',
+    description: 'add super admin',
+  })
+  @Post('/superadmin')
+  // @Auth(Role.SUPER_ADMIN)
+  superAdmin(@Body() payload: AdminDto) {   
+    console.log(payload);
+    return this.adminService.superAdmin(payload);
+  }
 
+
+  @Get('/getpro/user')
+  @Auth(Role.SUPER_ADMIN)
+  getProfile(@AuthParam() user:any){
+    return user;
+
+  }
 
 
 }

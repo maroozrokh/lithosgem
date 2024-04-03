@@ -33,6 +33,7 @@ export const AuthParam = createParamDecorator<unknown, ExecutionContext>(
       const param = data || 'user';
       const req = ctx.switchToHttp().getRequest<any>();
       const user: any = req.user[param];
+      console.log('decor',user);
       if (!user) {
         throw new NotFoundException();
       }

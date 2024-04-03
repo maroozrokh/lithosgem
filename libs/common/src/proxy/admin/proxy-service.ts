@@ -10,6 +10,9 @@ export class AdminProxy extends AProxy<AdminProxy> {
   constructor(@Inject(AdminPattern.NAME) admin: AdminProxy) {
     super(admin);
   }
+  healthCheck(){
+    return this.pingCheck();
+  }
 
   findAll(payload: IFindAllAdmin) {
     return this.send(AdminPattern.FIND_ALL_ADMIN, payload);
@@ -18,7 +21,7 @@ export class AdminProxy extends AProxy<AdminProxy> {
     return this.send(AdminPattern.FIND_ONE_ADMIN, payload);
   }
   addAdmin(payload: IAdmin) {
-    return this.send(AdminPattern.ADD_ADMIN, payload);
+       return this.send(AdminPattern.ADD_ADMIN, payload);
   }
 
   login(email: string, password: string) {
@@ -48,6 +51,7 @@ export class AdminProxy extends AProxy<AdminProxy> {
   // }
 
   superAdminInit() {
+    console.log('test');
     return this.send(AdminPattern.CREATE_SUPER_ADMIN, {});
   }
 }

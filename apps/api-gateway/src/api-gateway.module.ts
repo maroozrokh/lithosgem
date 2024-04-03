@@ -13,6 +13,7 @@ import { SettingProxyModule } from '@res/common/proxy/setting';
 import { CatModule } from './setting/category/category.module';
 import { AdminModule } from './admin/admin.module';
 import { ColorModule } from './setting/colors/colormodule';
+import { EmailProxyModule } from '@res/common/email';
 
 
 @Module({
@@ -33,6 +34,8 @@ import { ColorModule } from './setting/colors/colormodule';
     ColorModule,
     AdminModule,
     AdminProxyModule,
+    // EmailProxyModule,
+    AuthModule,
 
   ],
   providers: [ThrottlerService],

@@ -3,7 +3,7 @@ import { IAddAdmin, IAdmin, IFindAllAdmin, IFindOneId, IUpdateAdmin, IUpdateAdmi
 import { AdminRepository, str2objectId } from '@libs/schema';
 import { Injectable } from '@nestjs/common';
 import { AuthHelperService } from '@res/common/auth';
-import { EmailClientProxy } from '@res/common/email';
+// import { EmailClientProxy } from '@res/common/email';
 import { BAD_REQUEST, OK } from '@res/common/helpers';
 
 @Injectable()
@@ -11,7 +11,7 @@ export class AdminMicroService {
   constructor(
     private readonly adminRepo: AdminRepository,
     private readonly auth: AuthHelperService,
-    private readonly emailProxy: EmailClientProxy,
+    // private readonly emailProxy: EmailClientProxy,
 
     ) { }
 
@@ -40,7 +40,7 @@ export class AdminMicroService {
 
   async superAdminInit() {
     const name =
-      process.env.ADMIN_NAME || process.env.ADMIN_USER_NAME.split('@')[0];
+    process.env.ADMIN_NAME || process.env.ADMIN_USER_NAME.split('@')[0];
     const email = process.env.ADMIN_USER_NAME;
     const pass = process.env.ADMIN_PASSWORD;
     const password = await this.auth.hashPass(pass);
@@ -112,7 +112,6 @@ export class AdminMicroService {
   async login(email: any, password: string) {
     let admin = await this.adminRepo
       .findOneByCondition({ email })
-      .select({ trade: 0 })
       .exec();
     if (!admin) {
       return BAD_REQUEST('Opps! email not found');
