@@ -1,4 +1,4 @@
-import { IEditAboutUs, IEditeBlog, IEditvisual, IOConteactInfo, IOExpertPerson, IOSocialMedia, IOcontent, Ivisual } from "@libs/interface";
+import { IEditAboutUs, IEditeBlog, IEditvisual, IOConteactInfo, IOExpertPerson, IOSocialMedia } from "@libs/interface";
 import { ApiProperty } from "@nestjs/swagger";
 
 import {

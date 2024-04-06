@@ -1,8 +1,4 @@
-import { IOcontent, Ivisual } from '../../../../libs/interface/src/blog/index';
-import { Payload } from '@nestjs/microservices';
-import { url } from 'inspector';
-import { AddBlogDto } from '../../../api-gateway/src/blog/dto/add_blog.dto';
-import { Type } from 'class-transformer';
+
 import { IAboutUs, IAdmin, IBlog, IEditAboutUs, IEditeBlog, IEditeGem, IEditvisual, IFindAllBlog, IFindAllGem, IFindOneId, IGem } from '@libs/interface';
 import { AboutUsRepository, AdminRepository, BlogRepository, GemRepository, ImageRepository, str2objectId } from '@libs/schema';
 import { Injectable } from '@nestjs/common';

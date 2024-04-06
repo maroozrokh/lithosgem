@@ -1,4 +1,4 @@
-import { IAdmin, Ivisual, Role } from "@libs/interface";
+import { IAdmin, Role } from "@libs/interface";
 import { ApiProperty } from "@nestjs/swagger";
 import { IsEnum, IsNumber, IsString } from "class-validator";
 

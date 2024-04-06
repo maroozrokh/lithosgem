@@ -1,13 +1,7 @@
-import { IOcontent, Ivisual } from './../../../../libs/interface/src/blog/index';
-import { Payload } from '@nestjs/microservices';
-import { url } from 'inspector';
-import { AddBlogDto } from './../../../api-gateway/src/blog/dto/add_blog.dto';
-import { Type } from 'class-transformer';
-import { IAdmin, IBlog, IEditeBlog, IEditvisual, IFindAllBlog, IFindOneId } from '@libs/interface';
+import {  IBlog, IEditeBlog, IEditvisual, IFindAllBlog, IFindOneByCondition, IFindOneId } from '@libs/interface';
 import { AdminRepository, BlogRepository, ImageRepository, str2objectId } from '@libs/schema';
 import { Injectable } from '@nestjs/common';
 import { BAD_REQUEST, OK } from '@res/common/helpers';
-import { BlogProxy } from '@res/common/proxy/blog';
 import { BlogContentRepository } from '@libs/schema/BlogContent';
 //   const newSubItem: IBlog = {};
 //   const newMainItem: Ivisual = {
@@ -128,6 +122,19 @@ export class BlogMicroService {
 
   }
 
+
+  async findOneBlogByName(payload: IFindOneByCondition) {
+
+    const oneBlog = await this.blogRepo.findByCondition(payload);
+    if (!oneBlog) {
+      return BAD_REQUEST('Opps! not found Blog');
+    }
+    return OK(oneBlog);
+
+  }
+
+
+
   async deleteOneBlog(payload: IFindOneId) {
     const blog = await this.blogRepo.findOneByCondition({
       _id: str2objectId(payload._id),
@@ -143,52 +150,52 @@ export class BlogMicroService {
   }
 
 
-  async updateImage1(payload: IEditvisual) {
-    let imagen = await this.imageRepo.findOneByCondition({
-      _id: str2objectId(payload._id),
-    });
-    if (!imagen) {
-      return BAD_REQUEST('Opps! image not found');
-    }
-    if ('url' in payload) {
-      imagen.url = payload.url;
+  // async updateImage1(payload: IEditvisual) {
+  //   let imagen = await this.imageRepo.findOneByCondition({
+  //     _id: str2objectId(payload._id),
+  //   });
+  //   if (!imagen) {
+  //     return BAD_REQUEST('Opps! image not found');
+  //   }
+  //   if ('url' in payload) {
+  //     imagen.url = payload.url;
 
-    }
+  //   }
 
-    if ('alt' in payload) {
-      imagen.alt = payload.alt;
+  //   if ('alt' in payload) {
+  //     imagen.alt = payload.alt;
 
-    }
-    if ('name' in payload) {
-      imagen.name = payload.name;
+  //   }
+  //   if ('name' in payload) {
+  //     imagen.name = payload.name;
 
-    }
-    if ('link' in payload) {
-      imagen.link = payload.link;
+  //   }
+  //   if ('link' in payload) {
+  //     imagen.link = payload.link;
 
-    }
-    if ('order' in payload) {
-      imagen.order = payload.order;
+  //   }
+  //   if ('order' in payload) {
+  //     imagen.order = payload.order;
 
-    }
-    if ('categories' in payload) {
-      imagen.categories = payload.categories;
+  //   }
+  //   if ('categories' in payload) {
+  //     imagen.categories = payload.categories;
 
-    }
+  //   }
 
-    return (imagen);
+  //   return (imagen);
 
-  }
+  // }
   
 
 
-  async blogUpdate(payload:IEditeBlog){
-    const blog = await this.blogRepo.findOneByCondition({
-        _id: str2objectId(payload._id),
-      });
+  // async blogUpdate(payload:IEditeBlog){
+  //   const blog = await this.blogRepo.findOneByCondition({
+  //       _id: str2objectId(payload._id),
+  //     });
 
-  }
-  async updateBlog(payload: IEditeBlog, PayloadI?: IEditvisual) {
+  // }
+  async updateBlog(payload: IEditeBlog) {
   let blog = await this.blogRepo.findOneByCondition({
     _id: str2objectId(payload._id),
   });
@@ -199,11 +206,11 @@ export class BlogMicroService {
       blog.title = payload?.title;
     }
 
-    if ('blogCcontent' in payload) {
-      for (let i = 0; i < Object.values(payload.blogCcontent).length; i++) {
-        blog.blogCcontent[i] = payload?.blogCcontent[i];
-      }
-  
+    if ('content' in payload) {
+      // for (let i = 0; i < Object.values(payload.content).length; i++) {
+      //   blog.content[i] = payload?.content[i];
+      // }
+      blog.content = payload?.content ;
      
     }
 
@@ -239,19 +246,26 @@ export class BlogMicroService {
 
     }
 
+
     if ('categories' in payload) {
-      blog.categories = payload?.categories;
+      // for (let i = 0; i < Object.values(payload.categories).length; i++) {
+      //   blog.categories[i] = payload?.categories[i];
+      // }
+  
+      blog.categories = payload?.categories as any;
+
+     
     }
 
-    if ('URL' in payload) {
-      blog.URL = payload?.URL;
+    // if ('categories' in payload) {
+    //   blog.categories = payload?.categories;
+    // }
+
+    if ('url' in payload) {
+      blog.url = payload?.url;
     }
 
     if ('images' in payload) {
-      // for (let index = 0; index < array.length; index++) {
-      //   const element = array[index];
-        
-      // }
         blog.images = payload.images;
     }
 
@@ -262,24 +276,24 @@ export class BlogMicroService {
   }
 
 
-async updateImages(payload:any){
- const $set = {};
- if('url' in payload){
-  $set['images.$.url']= payload.url;
- }
- const myImage = await this.blogRepo.updateOne({
+// async updateImages(payload:any){
+//  const $set = {};
+//  if('url' in payload){
+//   $set['images.$.url']= payload.url;
+//  }
+//  const myImage = await this.blogRepo.updateOne({
 
-    _id: str2objectId(payload._id),
-    'images._id' : str2objectId(payload._imageId),
+//     _id: str2objectId(payload._id),
+//     'images._id' : str2objectId(payload._imageId),
     
-  },{
-    $set,
-  });
+//   },{
+//     $set,
+//   });
  
-  return(myImage);
+//   return(myImage);
 
 
-}
+// }
 
 
 

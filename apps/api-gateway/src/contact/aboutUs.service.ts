@@ -1,5 +1,5 @@
 
-import { IAboutUs, IBlog,  IEditAboutUs,  IEditeBlog, IFindAllBlog, IFindOneId, Ivisual } from '@libs/interface';
+import { IAboutUs, IBlog,  IEditAboutUs,  IEditeBlog, IFindAllBlog, IFindOneId } from '@libs/interface';
 import { Injectable } from '@nestjs/common';
 import { AboutUsProxy } from '@res/common/proxy/aboutUs';
 import { BlogProxy } from '@res/common/proxy/blog';

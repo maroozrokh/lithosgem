@@ -1,46 +1,44 @@
-// import { ObjectId } from '@libs/schema';
-// import { IPagination } from '../Base';
-
-import { ImageSchima, ObjectId } from "@libs/schema";
+import { ObjectId } from "@libs/schema";
 import { IPagination } from "../base";
 import { IAdmin } from "../admin";
 
-  export interface IOcontent{
-    order: number;
+  export interface IContent_type{
+    order?: number;
     text: string;
-    // format?:string;
-    // type?:string;
+    format?: string;
+    type?: string;
+    _id?: any;
 
 
   }
 export interface IBlog {
     _id?: any;
     title: string;
-    blogCcontent: IOcontent[];
+    content: IContent_type[];
     metaDescription: string;
-    images?:Ivisual[];
-    video?:Ivisual;
+    images?:IAssets_type[];
+    video?:IAssets_type;
     categories:string[];
     views?:number;
     updatedAt?:Date;
     createdAt?: Date;
     admin?: IAdmin;
-    URL: string;
+    url: string;
     
-
   }
 
 
 
-  export interface Ivisual{
-    _id?:any;
+  export interface IAssets_type{
+    _id?: any;
     url: string;
-    alt:string;
+    alt?: string;
     name?: string;
+    order?: number;
     link?: string;
-    order?:number;
+    urlImg?: string ;
+    type?: string;
     categories?:string[];
-    // type?:string;
   }
 
 
@@ -48,12 +46,11 @@ export interface IBlog {
   export interface IEditeBlog{
     _id?: any;
     title: string;
-    blogContent: IOcontent[];
+    content: IContent_type[];
     metaDescription: string;
-    images?:Ivisual[];
-    video?:Ivisual;
-    categories:string[];
-    URL: string;
+    images?:IAssets_type[];
+    video?:IAssets_type;
+    url: string;
     // updatedAt?:Date;
   }
 
@@ -69,7 +66,8 @@ export interface IBlog {
     link?: string;
     order:number;
     categories:string[];
-
+    urlImg?: string ;
+    // type?: string;
 
   }
   export type TBlog = IBlog | string | typeof ObjectId;

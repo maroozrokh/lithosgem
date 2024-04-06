@@ -1,4 +1,4 @@
-import { IBlog,IOcontent, Ivisual, TAdmin } from "@libs/interface";
+import { IAssets_type, IBlog,IContent_type,TAdmin, } from "@libs/interface";
 import { ApiProperty } from "@nestjs/swagger";
 
 import {
@@ -9,15 +9,7 @@ import {
   } from 'class-validator';
 
 
-export class VisualDto implements Ivisual{
-    // @ApiProperty({
-    //     description: 'Id',
-    //     required: true,
-    //     type: String,
-    //     default: '64626e05af7a2a51be1b61e2',
-    // })
-    // @Transform((value) => SafeMongoIdTransform(value))
-    // _id: typeof ObjectId | string;
+export class VisualDto implements IAssets_type{
     @ApiProperty({ example: 'url' })
     @IsString()
     url: string;
@@ -33,20 +25,27 @@ export class VisualDto implements Ivisual{
     @ApiProperty({ example: 1 })
     @IsNumber()
     order?: number;
-    @ApiProperty()
-    @IsArray()
-    categories?:Array<string>;
+    @ApiProperty({ example: 'url poster' })
+    @IsString()
+    urlImg?: string ;
+    @ApiProperty({ example: 'type' })
+    @IsString()
+    type?: string;
 
 }
- export class ContentDto implements IOcontent{
+ export class ContentDto implements IContent_type{
     @ApiProperty({example:1})
     @IsNumber()
      order: number;
      @ApiProperty({example:'this is an example for gem ston(lithos) website'})
      @IsString()
      text: string;
-
-
+     @ApiProperty({example:'this is an example for gem ston(lithos) website'})
+     @IsString()
+     format?: string;
+     @ApiProperty({example:'this is an example for gem ston(lithos) website'})
+     @IsString()
+     type?: string;
 }
 export class AddBlogDto implements IBlog {
     @ApiProperty({ example: 'title' })
@@ -54,12 +53,11 @@ export class AddBlogDto implements IBlog {
     title: string;
     @ApiProperty({type: ()=>ContentDto ,isArray:true})
     @IsArray()
-    blogCcontent: ContentDto[];
+    content: ContentDto[];
     @ApiProperty({ example: 'meta' })
     @IsString()
     metaDescription: string;
     @ApiProperty({type: ()=>VisualDto ,isArray:true})
-    // @ApiProperty({example:[{name:"" , meta:"", .....}]})
     @IsArray()
     images?: VisualDto[];
     @ApiProperty()
@@ -77,7 +75,7 @@ export class AddBlogDto implements IBlog {
     @ApiProperty()
     admin:TAdmin;
     @ApiProperty({example:"www.lithosgem.com/blogs/about-gem-stones"})
-    URL : string;
+    url : string;
 
 }
 

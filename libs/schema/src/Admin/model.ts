@@ -3,7 +3,7 @@ import { Document } from 'mongoose';
 import { BaseModel } from '../Base/base.model';
 import { Mixed } from '../Base/helper';
 import { IAdmin,  IAdminProfile } from '@libs/interface/admin';
-import { Ivisual, Role } from '@libs/interface';
+import {  IAssets_type, Role } from '@libs/interface';
 import { Iimage } from '../Blogs';
 export type AdminDocument = Admin & Document;
 export const ADMIN = 'Admin';
@@ -29,7 +29,7 @@ export class Admin extends BaseModel implements IAdmin {
   })
   role: Role;
   @Prop({ required: false, default: [], _id : true, type: Array<Iimage> })
-  profile: Ivisual;
+  profile: IAssets_type;
 //   @Prop({ required: false, default: null, type: Mixed })
 //   access: AdminAccess;
 }

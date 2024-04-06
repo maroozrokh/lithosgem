@@ -5,9 +5,9 @@ import { BlogService } from './blog.service';
 import { Auth } from '@res/common/decorators/auth';
 import { Role } from '@libs/interface';
 import { FindAllBlogDto } from './dto/finad_all_blog.dto';
-import { FindOneDto, FindOneImageDto } from './dto/find_one_blog.dto';
+import { FindOneByNameDto, FindOneDto, FindOneImageDto } from './dto/find_one_blog.dto';
 import { AddBlogDto, VisualDto } from './dto/add_blog.dto';
-import { EditeBlogDto, EditeImageDto } from './dto/edite_blog.dto';
+import { EditeBlogDto } from './dto/edite_blog.dto';
 // import { EditeBlogDto } from './dto/edite_blog.dto';
 
 
@@ -20,11 +20,21 @@ export class BlogController {
     description: 'Find all blogs',
   })
   @Get('/blogs')
-  @Auth(Role.ADMIN , Role.SUPER_ADMIN)
+  // @Auth(Role.ADMIN , Role.SUPER_ADMIN)
   findAllBlog(@Query() payload: FindAllBlogDto) {
     return this.blogService.findAllBlog(payload);
+
   }
 
+
+  @ApiOperation({
+    summary: 'Find one blogs by name',
+    description: 'Find by name',
+  })
+  @Get('/blog/:title')
+  async findBlogByName(@Query('title') title: FindOneByNameDto){
+    return this.blogService.findOneBlogByName(title);
+  }
 
 
   @ApiOperation({

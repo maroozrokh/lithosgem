@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
  import { AProxy } from '../base/proxy-service';
 import { BlogPattern } from './enum';
-import { IBlog, IEditeBlog, IEditvisual, IFindAllBlog, IFindOneId, Ivisual } from '@libs/interface';
+import { IBlog, IEditeBlog,IFindAllBlog, IFindOneByCondition, IFindOneId } from '@libs/interface';
  
  
 
@@ -18,6 +18,10 @@ export class BlogProxy extends AProxy<BlogProxy> {
   }
   findOne(payload: IFindOneId) {
     return this.send(BlogPattern.FIND_ONE_BLOG, payload);
+  }
+
+  findOneByName(payload: IFindOneByCondition) {
+    return this.send(BlogPattern.FIND_ONE_BLOG_BY_NAME, payload);
   }
 
 

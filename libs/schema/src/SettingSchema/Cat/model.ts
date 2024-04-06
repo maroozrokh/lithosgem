@@ -1,9 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 import { BaseModel } from '../../Base/base.model';
-import { IUser } from '@libs/interface/user';
-import { IBlog, Ivisual } from '@libs/interface/blog';
-import { IAboutUs, IAdmin, IOConteactInfo, IOExpertPerson, IOSocialMedia } from '@libs/interface';
 import { ICategory } from '@libs/interface/setting';
 
 export type CatDocument = Category & Document;

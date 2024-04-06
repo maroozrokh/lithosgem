@@ -1,6 +1,6 @@
 import { ObjectId } from '@libs/schema/Base/helper';
 import { Role } from '../Role';
-import { Ivisual } from '../blog';
+import { IAssets_type } from '../blog';
 
 export interface IAdmin {
   _id?: any;
@@ -9,7 +9,7 @@ export interface IAdmin {
   phone?: number;
   password?: string;
   role: Role;
-  profile?: Ivisual;
+  profile?: IAssets_type;
   // access: IAdminAccess;
   createdAt?: Date;
 }
@@ -19,7 +19,7 @@ export interface IAddAdmin {
   email?: string;
   password?: string;
   role: Role;
-  profile?: Ivisual;
+  profile?: IAssets_type;
   // access: IAdminAccess;
 }
 export interface IUpdateAdmin {
@@ -28,7 +28,7 @@ export interface IUpdateAdmin {
   email?: string;
   password?: string;
   role?: Role;
-  profile?: Ivisual;
+  profile?: IAssets_type;
   // access?: IAdminAccess;
 }
 
@@ -36,7 +36,7 @@ export interface IUpdateAdmin {
 export interface IUpdateAdminProfile {
   _id?: string;
   name?: string;
-  profile?: Ivisual;
+  profile?: IAssets_type;
   // access?: IAdminAccess;
 }
 
@@ -55,7 +55,7 @@ export interface IFindOneAdmin {
 }
 
 export interface IAdminProfile {
-  image?: Ivisual;
+  image?: IAssets_type;
   // description?: string;
   // [key: string]: any;
 }

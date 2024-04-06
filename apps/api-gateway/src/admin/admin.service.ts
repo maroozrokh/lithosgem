@@ -1,6 +1,6 @@
 import { IFindAllAdmin, IUpdateAdmin, IUpdateAdminProfile } from '@libs/interface';
 
-import { IAdmin, IBlog,  IEditeBlog, IFindAllBlog, IFindOneId, Ivisual } from '@libs/interface';
+import { IAdmin, IBlog,  IEditeBlog, IFindAllBlog, IFindOneId } from '@libs/interface';
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { AdminProxy } from '@res/common';
 import { log } from 'console';

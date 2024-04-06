@@ -21,10 +21,12 @@ export class BlogRepository extends BaseRepository<BlogDocument> {
       image._id = new Types.ObjectId();
 
     });
-    // blog.blogContent.forEach((content:any) => {
-    //   image._id = new Types.ObjectId();
-      
-    // });
+
+    blog.content.forEach((content:any) => {
+      content._id = new Types.ObjectId();
+
+    });
+
 
     return await blog.save();
   }

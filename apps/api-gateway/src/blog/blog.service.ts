@@ -1,8 +1,7 @@
 
-import { IBlog,  IEditeBlog, IFindAllBlog, IFindOneId, Ivisual } from '@libs/interface';
+import { IBlog,  IEditeBlog, IFindAllBlog, IFindOneByCondition, IFindOneId } from '@libs/interface';
 import { Injectable } from '@nestjs/common';
 import { BlogProxy } from '@res/common/proxy/blog';
-import { ok } from 'assert';
 
 @Injectable()
 export class BlogService {
@@ -10,28 +9,26 @@ export class BlogService {
   addBlog(payload: IBlog) {
     return this.blogProxy.addBlog(payload);
   }
-
-
-  // editeBlog(payload: IEditBlog) {
-  //   return this.blogProxy.editeBlog(payload);
-  // }
-
   findAllBlog(payload: IFindAllBlog) {
     return this.blogProxy.findAllBlog(payload);
   }
   findOneBlog(payload: IFindOneId) {
     return this.blogProxy.findOne(payload);
   }
+  findOneBlogByName(payload: IFindOneByCondition) {
+    return this.blogProxy.findOneByName(payload);
+  }
+
+
+
   deleteOneBlog(payload: IFindOneId) {
     return this.blogProxy.deleteBlog(payload);
   }
-
   updateBlog(payload: IEditeBlog) {
     return this.blogProxy.updateBlog(payload);
   }
 
-  
-  async editeImage(payload:any){
+    async editeImage(payload:any){
 
     return this.blogProxy.updateImage(payload);
 
@@ -39,9 +36,5 @@ export class BlogService {
   
   }
 
-
-  // addImage(payload: Ivisual) {
-  //   return this.blogProxy.addImage(payload);
-  // }
 
 }
