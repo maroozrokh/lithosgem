@@ -1,4 +1,4 @@
-import { IFindOneId } from '@libs/interface';
+import { IFindAbout, IFindOneId } from '@libs/interface';
 import { ObjectId, SafeMongoIdTransform } from '@libs/schema';
 import { ApiProperty } from '@nestjs/swagger';
 import { Transform } from 'class-transformer';
@@ -33,5 +33,12 @@ export class FindOneImageDto implements IFindOneId {
   })
   @Transform((value) => SafeMongoIdTransform(value))
   _id: typeof ObjectId | string;
+
+}
+
+
+export class FindAboutDto implements IFindAbout {
+  contactUs?: any;
+  query?: any;
 
 }

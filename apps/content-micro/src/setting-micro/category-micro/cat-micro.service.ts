@@ -1,4 +1,4 @@
-import { IOcontent, Ivisual } from '../../../../../libs/interface/src/blog/index';
+import { IContent_type, IAssets_type } from '../../../../../libs/interface/src/blog/index';
 import { Payload } from '@nestjs/microservices';
 import { url } from 'inspector';
 import { AddBlogDto } from '../../../../api-gateway/src/blog/dto/add_blog.dto';

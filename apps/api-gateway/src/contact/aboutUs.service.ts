@@ -1,3 +1,4 @@
+import { IFindAbout } from './../../../../libs/interface/src/aboutUs/index';
 
 import { IAboutUs, IBlog,  IEditAboutUs,  IEditeBlog, IFindAllBlog, IFindOneId } from '@libs/interface';
 import { Injectable } from '@nestjs/common';
@@ -15,10 +16,10 @@ export class AboutUsService {
 
 
 
-  findAboutUsPage(payload: IFindOneId){
-    return this.aboutUsProxy.findAbout(payload);
+  // findAboutUsPage(payload: IFindOneId){
+  //   return this.aboutUsProxy.findAbout(payload);
 
-  }
+  // }
 
   deleteAboutUsPage(payload: IFindOneId) {
     return this.aboutUsProxy.deleteAbout(payload);
@@ -28,6 +29,23 @@ export class AboutUsService {
     return this.aboutUsProxy.updateAbout(payload);
   }
 
+
+  
+  findAboutUSById(payload: IFindOneId){
+    return this.aboutUsProxy.findAbout(payload);
+
+  }
+
+
+  // findAboutUsPages(payload: IFindAbout){
+  //   return this.aboutUsProxy.findAboutPage(payload);
+
+  // }
+
+  // findAboutUsPages(payload: IFindAbout){
+  //   return this.aboutUsProxy.findAboutPage(payload);
+
+  // }
  
 
 }

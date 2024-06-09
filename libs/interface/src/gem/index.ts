@@ -1,23 +1,23 @@
 import { ObjectId } from "@libs/schema";
-import { IOcontent, Ivisual } from "../blog";
 import { IPagination } from "../base";
+import { IAssets_type, IContent_type, TAdmin } from "..";
 
 
 export interface IGem {
     _id?: any;
     title:string;
     metaDescription:string;
-    content:IOcontent[];
+    content:IContent_type[];
     categories:Array<string>;
-    images?:Array<Ivisual>;
-    mapimages?: Array<Ivisual>;
-    video?: Ivisual;
-    sound?: Ivisual;
-    padcast?:Ivisual;
+    images?:Array<IAssets_type>;
+    mapimages?: Array<IAssets_type>;
+    video?: IAssets_type;
+    sound?: IAssets_type;
+    padcast?:IAssets_type;
     url:string;
     popularity: number;
     boresh?: IBoresh;
-    table?: IGemTable;
+    gemTable?: IGemTable;
     views?:number;
     updatedAt?:Date;
     createdAt?: Date;
@@ -25,8 +25,10 @@ export interface IGem {
   }
 
   export interface IBoresh{
-    order: number;
-    boreshImg?: Ivisual[];
+    _id?: any;
+    order?: number;
+    boreshImg?: IAssets_type[];
+    type?: string;
   }
 
   export interface IGemTable{
@@ -40,20 +42,29 @@ export interface IGem {
     hardness?:number;
     weigth?:number;
     system?:string;
-    // shops?:Array<string>;
     price?:number;
     rare?:boolean;
-    // boreshImg?:Array<Ivisual>;
     order?: number;
+    type?: string;
+    admin?:TAdmin;
 
   }
 
   export type TGem = IGem | string | typeof ObjectId;
+  export type vvv = IAssets_type | string | typeof ObjectId;
   
   export interface IFindAllGem extends IPagination {
     query?: any;
     gem?: TGem ;
     category?: Array<string>;
+    }
+
+
+    export interface IFindNewestGem extends IPagination {
+      query?: any;
+      blog?: TGem ;
+      updatedAt?:Date;
+    
     }
   
 
@@ -62,17 +73,18 @@ export interface IGem {
       _id?: any;
       title:string;
       metaDescription:string;
-      content:IOcontent[];
+      content:IContent_type[];
       categories:Array<string>;
-      images?:Array<Ivisual>;
-      mapimages?: Array<Ivisual>;
-      video?: Ivisual;
-      sound?: Ivisual;
-      padcast?:Ivisual;
+      images?:Array<IAssets_type>;
+      mapimages?: Array<IAssets_type>;
+      video?: IAssets_type;
+      sound?: IAssets_type;
+      padcast?:IAssets_type;
       url:string;
       popularity: number;
       boresh?: IBoresh;
       table: IGemTable;
+      updatedAt?: Date;
 
 
     }

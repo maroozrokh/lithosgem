@@ -1,7 +1,7 @@
 
 import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Post, Put, Query } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
-import { FindOneDto } from './dto/find_aboutUs.dto';
+import { FindAboutDto, FindOneDto } from './dto/find_aboutUs.dto';
 import { AboutUsService } from './aboutUs.service';
 import { AboutUsDto } from './dto/add_aboutUs.dto';
 import { EditeAboutUsDto } from './dto/edite_aboutUs.dto';
@@ -12,6 +12,21 @@ import { EditeAboutUsDto } from './dto/edite_aboutUs.dto';
 export class AboutUsController {
   constructor(private readonly aboutUsService: AboutUsService) { }
 
+   
+  // @ApiOperation({
+  //   summary: 'get about us page',
+  //   description: 'get about us page',
+  // })
+  // @Get()
+  // // @Auth(Role.ALL)
+  // getAboutPages(@Query() payload: FindAboutDto) {
+  //   console.log(payload)
+  //   return this.aboutUsService.findAboutUsPages(payload);
+  // }
+
+
+
+
 
   @ApiOperation({
     summary: 'get about us page',
@@ -20,10 +35,28 @@ export class AboutUsController {
   @Get('/:_id')
   // @Auth(Role.ALL)
   getAboutPage(@Param() payload: FindOneDto) {
-    return this.aboutUsService.findAboutUsPage(payload);
+    return this.aboutUsService.findAboutUSById(payload);
   }
 
 
+
+
+
+  
+  // @ApiOperation({
+  //   summary: 'get about us page',
+  //   description: 'get about us page',
+  // })
+  // @Get()
+  // // @Auth(Role.ALL)
+  // getAboutPage(@Query() payload: FindAboutDto) {
+  //   console.log(payload)
+  //   return this.aboutUsService.findAboutUsPages(payload);
+  // }
+
+
+
+ 
 
 
 

@@ -1,4 +1,4 @@
-import { IAdmin, IAdminProfile, IUpdateAdmin, IUpdateAdminProfile, Ivisual, Role } from "@libs/interface";
+import { IAdmin, IAdminProfile, IUpdateAdmin, IUpdateAdminProfile, IAssets_type, Role } from "@libs/interface";
 import { ApiProperty } from "@nestjs/swagger";
 import { IsEnum, IsNumber, IsString } from "class-validator";
 import { VisualDto } from "../../blog/dto/add_blog.dto";

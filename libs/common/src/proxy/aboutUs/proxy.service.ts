@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
  import { AProxy } from '../base/proxy-service';
 import { AboutUsPattern } from './enum';
-import { IAboutUs,  IEditAboutUs, IFindOneId,  } from '@libs/interface';
+import { IAboutUs,  IEditAboutUs, IFindAbout, IFindOneId,  } from '@libs/interface';
  
  
 
@@ -13,8 +13,15 @@ export class AboutUsProxy extends AProxy<AboutUsProxy> {
   }
 
   findAbout(payload: IFindOneId) {
+    return this.send(AboutUsPattern.FIND_ABOUT_ID, payload);
+  }
+
+  
+  findAboutPage(payload: IFindAbout) {
     return this.send(AboutUsPattern.FIND_ABOUT, payload);
   }
+
+
 
 
   updateAbout(payload: IEditAboutUs) {

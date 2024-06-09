@@ -1,4 +1,4 @@
-import { ICategory, IColor } from './../../../../interface/src/setting/index';
+import { ICategory, IColor, IFindAllMaps, IMaps } from './../../../../interface/src/setting/index';
 import { Inject, Injectable } from "@nestjs/common";
 import { AProxy } from "../base/proxy-service";
 import { SettingPattern } from "./enum";
@@ -83,6 +83,32 @@ export class SettingProxy extends AProxy<SettingProxy> {
 
     return this.send(SettingPattern.FIND_ONE_COLOR , payload);
 }
+
+
+
+
+
+addMaps(payload: IMaps) {
+  return this.send(SettingPattern.ADD_MAPS, payload);
+}
+
+findAllMaps(payload: IFindAllMaps ) {
+  return this.send(SettingPattern.FIND_ALL_MAPS, payload);
+}
+
+  updateMaps(payload: IMaps) {
+  return this.send(SettingPattern.UPDATE_MAPS , payload);
+}
+
+ deleteMaps(payload: IFindOneId) {
+  return this.send(SettingPattern.DELETE_MAPS , payload);
+}
+findOneMaps(payload: IFindOneId) {
+
+  return this.send(SettingPattern.FIND_ONE_MAPS , payload);
+}
+
+
 
 
   // findOneCategory(payload: IFindOneId) {

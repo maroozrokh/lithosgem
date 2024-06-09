@@ -4,3 +4,4 @@ export * from './blog';
 export * from './setting';
 export * from './gem';
 export * from './aboutUs';
+export * from './faq';

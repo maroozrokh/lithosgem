@@ -2,8 +2,8 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import mongoose, { Document, Types } from 'mongoose';
 import { BaseModel } from '../Base/base.model';
 import { IBoresh, IGem, IGemTable } from '@libs/interface/gem';
-import { IOcontent, Ivisual } from '@libs/interface/blog';
-import { IOcontents, Iimage } from '../Blogs';
+import { IContent_type, IAssets_type } from '@libs/interface/blog';
+import { IContent_types, Iimage } from '../Blogs';
 import { ObjectId } from '../Base';
 
 export type GemDocument = Gem & Document;
@@ -41,12 +41,14 @@ export class IOGemTable implements IGemTable{
 
 }
 
-
+@Schema({ _id: true })
 export class IOBoresh implements IBoresh{
     @Prop({ required: false, default: 1 })
-    order: number;
+    order?: number;
     @Prop({ required: false,type: Array<Iimage>, _id:true })
-    boreshImg?: Ivisual[];
+    boreshImg?: IAssets_type[];
+    @Prop({ required: false})
+    type?: string;
 
 }
 
@@ -60,13 +62,13 @@ export class Gem extends BaseModel implements IGem {
     @Prop({ required: true, default: 'gem stone in shiraz' })
     metaDescription: string;
     @Prop({ required: true , default: null})
-    content: IOcontents[];
+    content: IContent_types[];
     @Prop({ required: true, default: false })
     categories: string[];
-    @Prop({ required: false, default: [], _id : true, type: Array<Ivisual> })
-    images?: Ivisual[];
-    @Prop({ required: false, default: [], _id : true, type: Array<Ivisual> })
-    mapimages?:   Ivisual[];
+    @Prop({ required: false, default: [], _id : true, type: Array<IAssets_type> })
+    images?: IAssets_type[];
+    @Prop({ required: false, default: [], _id : true, type: Array<IAssets_type> })
+    mapimages?:   IAssets_type[];
     @Prop({ required: false, default: null,type: Iimage})
     video?: Iimage;
     @Prop({ required: false, default: null,type: Iimage})
@@ -77,10 +79,9 @@ export class Gem extends BaseModel implements IGem {
     url: string;
     @Prop({ required: true, default: 5})
     popularity: number;
-    @Prop({ required: false, default: [], _id : true, type: Array<Ivisual> })
+    @Prop({ required: false, default: [], _id : true, type: Array<IAssets_type> })
     boresh?: IOBoresh;
     @Prop({ required: false, _id : true, type: IOGemTable, default: () => new mongoose.Types.ObjectId() })
-
     // @Prop({ required: false, _id : true, type: IOGemTable })
     table: IOGemTable;
     @Prop({ required: false, default: false })

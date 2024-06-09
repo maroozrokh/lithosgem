@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { MongoConfigAsync, SettingProxyModule, setupEnv } from '@res/common';
+import { FAQProxyModule, MongoConfigAsync, SettingProxyModule, setupEnv } from '@res/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { AuthModule } from '@res/common/decorators/auth';
 import { BlogModule } from 'apps/api-gateway/src/blog/blog.module';
@@ -15,6 +15,16 @@ import { CatMicroModule } from './setting-micro/category-micro/cat-micro.module'
 import { CatModule } from 'apps/api-gateway/src/setting/category/category.module';
 import { ColorMicroModule } from './setting-micro/color-micro/color-micro.module';
 import { ColorModule } from 'apps/api-gateway/src/setting/colors/colormodule';
+import { MapsModule } from 'apps/api-gateway/src/setting/maps/mapsmodule';
+import { MapsMicroModule } from './setting-micro/maps-micro/maps-micro.module';
+import { FaqMicroModule } from './faq-micro/faq-micro.module';
+import { FaqModule } from 'apps/api-gateway/src/faq/faq.module';
+import { IndexModule } from 'apps/api-gateway/src/index/index.module';
+import { indexMicroModule } from './index-micro/index-micro.module';
+import { IndexProxyModule } from '@res/common/proxy/indexProxy';
+import { GalleryModule } from 'apps/api-gateway/src/gallery/gallery.module';
+import { GalleryProxyModule } from '@res/common/proxy/gallery';
+import { GalleryMicroModule } from './gallery-micro/gallery-micro.module';
 
 @Module({
   imports: [
@@ -31,10 +41,17 @@ import { ColorModule } from 'apps/api-gateway/src/setting/colors/colormodule';
     AboutProxyModule,
     AboutUsMicroModule,
     AboutUsModule,
+    FaqMicroModule,
+    FaqModule,
+    FAQProxyModule,
     SettingProxyModule,
     CatMicroModule,
     CatModule,
-    ColorMicroModule,ColorModule
+    ColorMicroModule,ColorModule,
+    MapsMicroModule, MapsModule,
+    IndexModule,indexMicroModule,IndexProxyModule,
+    GalleryModule,GalleryProxyModule,GalleryMicroModule,
+
   ],
 
 })

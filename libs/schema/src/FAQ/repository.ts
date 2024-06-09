@@ -7,7 +7,7 @@ import { FaqDocument, Faq, FAQ } from './model';
 @Injectable()
 export class FaqRepository extends BaseRepository<FaqDocument> {
   constructor(
-    @InjectModel(FAQ.name)
+    @InjectModel(Faq.name)
     private model: Model<FaqDocument>,
   ) {
     super(model);

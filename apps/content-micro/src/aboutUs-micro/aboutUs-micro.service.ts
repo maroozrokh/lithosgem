@@ -1,13 +1,15 @@
+import { Payload } from '@nestjs/microservices';
 
-import { IAboutUs, IAdmin, IBlog, IEditAboutUs, IEditeBlog, IEditeGem, IEditvisual, IFindAllBlog, IFindAllGem, IFindOneId, IGem } from '@libs/interface';
+import { IAboutUs, IAdmin, IBlog, IEditAboutUs, IEditeBlog, IEditeGem, IEditvisual, IFindAbout, IFindAllBlog, IFindAllGem, IFindOneId, IGem } from '@libs/interface';
 import { AboutUsRepository, AdminRepository, BlogRepository, GemRepository, ImageRepository, str2objectId } from '@libs/schema';
 import { Injectable } from '@nestjs/common';
 import { BAD_REQUEST, OK } from '@res/common/helpers';
 import { BlogProxy } from '@res/common/proxy/blog';
 import { BlogContentRepository } from '@libs/schema/BlogContent';
 import { GemTableRepository } from '@libs/schema/GemTable';
+import { match } from 'assert';
 //   const newSubItem: IBlog = {};
-//   const newMainItem: Ivisual = {
+//   const newMainItem: IAssets_type = {
 //   subItems: [newSubItem], // اضافه کردن یک SubItem به MainItem
 // };
 @Injectable()
@@ -39,7 +41,7 @@ export class AboutUsMicroService {
 
 
 
-  async findAboutUs(payload: IFindOneId) {
+  async findAboutUsById(payload: IFindOneId) {
     const aboutUsPage = await this.aboutUsRepo.findOneById(payload._id);
     if (!aboutUsPage) {
       return BAD_REQUEST('Opps! not found AboutUs Page');
@@ -47,6 +49,49 @@ export class AboutUsMicroService {
     return OK(aboutUsPage);
 
   }
+
+
+
+  
+
+
+  // async findAboutUs(payload: IFindAbout) {
+  //   let aboutUs = await this.aboutUsRepo.findByCondition({
+  //     payload
+  //   });
+
+  //   let aboutUsss = await this.aboutUsRepo.findAll({
+  //     payload
+  //   });
+ 
+  //   if (!aboutUsss) {
+  //     return BAD_REQUEST('Opps! not found About');
+  //   }
+  //   console.log(aboutUs)
+  //   return OK(aboutUs);
+
+  // }
+
+
+
+  // async findAboutUs(payload: IAboutUs) {
+  //   let aboutUs = await this.aboutUsRepo.findByCondition({
+  //     payload
+  //   });
+
+  //   if (!aboutUs) {
+  //     return BAD_REQUEST('Opps! not found About');
+  //   }
+  //   console.log(payload)
+  //   return OK(aboutUs);
+
+  // }
+
+
+
+
+ 
+
 
 
 

@@ -1,10 +1,8 @@
 import { IBoresh, IGemTable } from './../../../../../libs/interface/src/gem/index';
-import { IGem, IOcontent, Ivisual } from "@libs/interface";
+import { IAssets_type, IGem } from "@libs/interface";
 import { ApiProperty } from "@nestjs/swagger";
 import { IsArray, IsBoolean, IsNumber, IsObject, IsString } from "class-validator";
 import { ContentDto, VisualDto } from "../../blog/dto/add_blog.dto";
-import { Transform } from 'class-transformer';
-import { ObjectId, SafeMongoIdTransform } from '@libs/schema';
 
 
 
@@ -12,22 +10,16 @@ export class BoreshDto implements IBoresh{
     @ApiProperty({example:1})
     @IsNumber()
     order: number;
-    @ApiProperty()
+    @ApiProperty({type: ()=>VisualDto ,isArray:true})
     @IsArray()
     boreshImg?: VisualDto[];
+    @ApiProperty()
+    @IsString()
+    type?: string;
 
 }
 
 export class GemTableDto implements IGemTable{
-    //   @ApiProperty({
-    //     description: 'Id',
-    //     required: true,
-    //     type: String,
-    //     default: '64626e05af7a2a51be1b61e2',
-    //   })
-    //   @Transform((value) => SafeMongoIdTransform(value))
-    //   _id: typeof ObjectId | string;
-
     @ApiProperty({ example: ['red','blue'] })
     @IsArray()
     color?: string[];
@@ -55,25 +47,22 @@ export class GemTableDto implements IGemTable{
     @ApiProperty({ example: 'سیستم خاکی آتشفشانی'})
     @IsString()
     system?: string;
-    // shops?: string[];
     @ApiProperty({ example: 3})
     @IsNumber()
     price?: number;
     @ApiProperty({ example: true})
     @IsBoolean()
     rare?: boolean;
-
     @ApiProperty({ example: 1})
     @IsNumber()
     order?: number;
+    @ApiProperty({ example: 'type'})
+    @IsString()
+    type?: string;  
 
 }
 
 export class AddGemDto implements IGem {
-
-  
-
-
     @ApiProperty({ example: 'gem title' })
     @IsString()
     title: string;
@@ -110,7 +99,7 @@ export class AddGemDto implements IGem {
     boresh?: BoreshDto;
     @ApiProperty({type: ()=>GemTableDto})
     @IsObject()
-    table?: GemTableDto;
+    gemTable?: GemTableDto;
     @ApiProperty()
     @IsNumber()
     views?: number;

@@ -2,7 +2,7 @@ import { Controller, Get } from '@nestjs/common';
 import {  GemMicroService } from './gem-micro.service';
 import { MessagePattern, Payload } from '@nestjs/microservices';
 import { BlogPattern } from '@res/common/proxy/blog';
-import { IBlog,  IEditeBlog,  IEditeGem,  IFindAllBlog, IFindAllGem, IFindOneId, IGem, Ivisual } from '@libs/interface';
+import { IBlog,  IEditeBlog,  IEditeGem,  IFindAllBlog, IFindAllGem, IFindOneId, IGem, IAssets_type, IFindOneByCondition } from '@libs/interface';
 import { GemPattern } from '@res/common/proxy/gem';
 
 @Controller()
@@ -18,34 +18,44 @@ export class GemMicroController {
 
 
   @MessagePattern(GemPattern.FIND_ALL_GEM)
-  findAllBlog(@Payload() payload: IFindAllGem) {
+  findAllGem(@Payload() payload: IFindAllGem) {
     return this.gemMicroService.findAllGem(payload);
   }
 
   @MessagePattern(GemPattern.FIND_ONE_GEM)
-  findOneBlog(@Payload() payload: IFindOneId) {
+  findOneGem(@Payload() payload: IFindOneId) {
     return this.gemMicroService.findOneGem(payload);
   }
 
+
+  @MessagePattern(GemPattern.FIND_ONE_GEM_BY_NAME)
+  findOneGemByName(@Payload() payload: IFindOneByCondition) {
+    return this.gemMicroService.findOneGemByName(payload);
+  }
   @MessagePattern(GemPattern.DELETE_GEM)
-  deleteOneBlog(@Payload() payload: IFindOneId) {
+  deleteOneGem(@Payload() payload: IFindOneId) {
     return this.gemMicroService.deleteOneGem(payload);
   }
 
-  @MessagePattern(GemPattern.UPDATE_IMAGE)
-  updateImage(@Payload() payload: any) {
-    return this.gemMicroService.updateImages(payload);
+
+  @MessagePattern(GemPattern.DELETE_BORESH)
+  deleteBoreshGem(@Payload() payload: IFindOneId) {
+    return this.gemMicroService.deleteGemBoresh(payload);
   }
+ 
 
   @MessagePattern(GemPattern.UPDATE_GEM)
-  updateBlog(@Payload() payload: IEditeGem) {
+  updateGem(@Payload() payload: IEditeGem) {
     return this.gemMicroService.updateGem(payload);
   }
 
-
+ // @MessagePattern(GemPattern.UPDATE_IMAGE)
+  // updateImage(@Payload() payload: any) {
+  //   return this.gemMicroService.updateImages(payload);
+  // }
   
   // @MessagePattern(BlogPattern.ADD_IMAGE)
-  // addImage(@Payload() payload: Ivisual[]) {
+  // addImage(@Payload() payload: IAssets_type[]) {
   //   return this.blogMicroService.addImage(payload);
   // }
 

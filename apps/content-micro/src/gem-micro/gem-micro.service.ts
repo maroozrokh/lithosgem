@@ -1,17 +1,11 @@
-import { IOcontent, Ivisual } from '../../../../libs/interface/src/blog/index';
-import { Payload } from '@nestjs/microservices';
-import { url } from 'inspector';
-import { AddBlogDto } from '../../../api-gateway/src/blog/dto/add_blog.dto';
-import { Type } from 'class-transformer';
-import { IAdmin, IBlog, IEditeBlog, IEditeGem, IEditvisual, IFindAllBlog, IFindAllGem, IFindOneId, IGem } from '@libs/interface';
-import { AdminRepository, BlogRepository, GemRepository, ImageRepository, str2objectId } from '@libs/schema';
+import { IAssets_type, IContent_type, IEditeGem, IEditvisual,  IFindAllGem, IFindOneByCondition, IFindOneId, IGem } from '@libs/interface';
+import { AdminRepository, GemRepository, ImageRepository, str2objectId } from '@libs/schema';
 import { Injectable } from '@nestjs/common';
 import { BAD_REQUEST, OK } from '@res/common/helpers';
-import { BlogProxy } from '@res/common/proxy/blog';
 import { BlogContentRepository } from '@libs/schema/BlogContent';
-import { GemTableRepository } from '@libs/schema/GemTable';
+import { GalleryRepository } from '@libs/schema/Gallery';
 //   const newSubItem: IBlog = {};
-//   const newMainItem: Ivisual = {
+//   const newMainItem: IAssets_type = {
 //   subItems: [newSubItem], // اضافه کردن یک SubItem به MainItem
 // };
 @Injectable()
@@ -21,29 +15,33 @@ export class GemMicroService {
   constructor(
     private readonly gemRepo: GemRepository,
      private readonly blogContentRepo: BlogContentRepository, private readonly imageRepo: ImageRepository, 
+     private readonly galleryRepo: GalleryRepository,
      private readonly adminRepo: AdminRepository) { }
 
 
 
-  async addIMG(payloadIMG: Ivisual) {
+  // async addIMG(payloadIMG: IAssets_type) {
 
-    const image = await this.imageRepo.create({
-      payloadIMG,
-    });
-    return (image);
-  }
+  //   const image = await this.imageRepo.create({
+  //     payloadIMG,
+  //   });
+  //   return (image);
+  // }
 
 
-  async addContent(payload: IOcontent) {
-    const content = await this.blogContentRepo.create({
-      payload,
-    });
-    return (content);
-  }
+  // async addContent(payload: IContent_type) {
+  //   const content = await this.blogContentRepo.create({
+  //     payload,
+  //   });
+  //   return (content);
+  // }
 
   async addGem(payload: IGem) {
     const gem = await this.gemRepo.addGem(payload);
-    // console.log(payload);
+    const bb = await this.galleryRepo.saveOne(payload.video);
+    console.log(bb);
+    // console.log(bb);
+
     return (gem);
 
   }
@@ -119,6 +117,33 @@ export class GemMicroService {
 
   }
 
+  
+  async findOneGemByName(payload: IFindOneByCondition) {
+
+    const oneGem = await this.gemRepo.findByCondition(payload);
+    if (!oneGem) {
+      return BAD_REQUEST('Opps! not found Blog');
+    }
+    return OK(oneGem);
+
+  }
+
+
+  async deleteGemBoresh(payload: IFindOneId) {
+    const gemBoresh = await this.gemRepo.findOneByCondition({
+      _id: str2objectId(payload._id),
+    });
+    if (!gemBoresh) {
+      return BAD_REQUEST('Opps! not found gemBoresh');
+    }
+    const deleteGemBoresh = await this.gemRepo.deleteOne({
+      _id: payload._id,
+    });
+
+    return OK(!!deleteGemBoresh?.deletedCount);
+  }
+
+
   async findOneGem(payload: IFindOneId) {
 
     const oneGem = await this.gemRepo.findOneById(payload._id);
@@ -182,14 +207,7 @@ export class GemMicroService {
   }
   
 
-
-  // async blogUpdate(payload:IEditeBlog){
-  //   const blog = await this.blogRepo.findOneByCondition({
-  //       _id: str2objectId(payload._id),
-  //     });
-
-  // }
-  async updateGem(payload: IEditeGem, payloadI?: IEditvisual) {
+  async updateGem(payload: IEditeGem) {
   let gem = await this.gemRepo.findOneByCondition({
     _id: str2objectId(payload._id),
   });
@@ -249,10 +267,6 @@ export class GemMicroService {
     }
 
     if ('images' in payload) {
-      // for (let index = 0; index < array.length; index++) {
-      //   const element = array[index];
-        
-      // }
         gem.images = payload.images;
     }
 
@@ -289,7 +303,7 @@ export class GemMicroService {
 
 
       if ('padcast' in payload) {
-        const padcast = gem.padcast || { url: '', alt: '', name: '', link: '', order: 0, categories: [] }
+        const padcast = gem.padcast || { url: '', alt: '', name: '', link: '', order: 0, categories: []}
   
         if (payload.padcast.alt) {
           padcast.alt = payload?.padcast.alt;
@@ -381,6 +395,8 @@ export class GemMicroService {
           boresh.boreshImg = payload?.boresh.boreshImg;
 
         }
+
+        if('type')
           gem.boresh = payload?.boresh;
 
     }
@@ -393,24 +409,24 @@ export class GemMicroService {
 }
 
 
-async updateImages(payload:any){
- const $set = {};
- if('url' in payload){
-  $set['images.$.url']= payload.url;
- }
- const myImage = await this.gemRepo.updateOne({
+// async updateImages(payload:any){
+//  const $set = {};
+//  if('url' in payload){
+//   $set['images.$.url']= payload.url;
+//  }
+//  const myImage = await this.gemRepo.updateOne({
 
-    _id: str2objectId(payload._id),
-    'images._id' : str2objectId(payload._imageId),
+//     _id: str2objectId(payload._id),
+//     'images._id' : str2objectId(payload._imageId),
     
-  },{
-    $set,
-  });
+//   },{
+//     $set,
+//   });
  
-  return(myImage);
+//   return(myImage);
 
 
-}
+// }
 }
 
 

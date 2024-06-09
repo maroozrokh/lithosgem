@@ -14,5 +14,12 @@ export enum SettingPattern {
   FIND_ALL_COLOR = 'find.all.color',
   ADD_COLOR = 'add.color',
 
+  //Maps pattern in setting
+  DELETE_MAPS = 'delete.maps',
+  UPDATE_MAPS = 'update.maps',
+  FIND_ONE_MAPS = 'find.one.maps',
+  FIND_ALL_MAPS = 'find.all.maps',
+  ADD_MAPS = 'add.maps',
+
 }
 

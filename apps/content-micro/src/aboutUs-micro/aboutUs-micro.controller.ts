@@ -2,7 +2,7 @@ import { Controller, Get } from '@nestjs/common';
 import {  AboutUsMicroService } from './aboutUs-micro.service';
 import { MessagePattern, Payload } from '@nestjs/microservices';
 import { BlogPattern } from '@res/common/proxy/blog';
-import { IAboutUs, IBlog,  IEditAboutUs,  IEditeBlog,  IEditeGem,  IFindAllBlog, IFindAllGem, IFindOneId, IGem, Ivisual } from '@libs/interface';
+import { IAboutUs, IBlog,  IEditAboutUs,  IEditeBlog,  IEditeGem,  IFindAllBlog, IFindAllGem, IFindOneId, IGem, IAssets_type, IFindAbout } from '@libs/interface';
 import { GemPattern } from '@res/common/proxy/gem';
 import { AboutUsPattern } from '@res/common/proxy/aboutUs';
 
@@ -19,10 +19,22 @@ export class AboutUsMicroController {
 
 
 
-  @MessagePattern(AboutUsPattern.FIND_ABOUT)
-  findAboutUsPage(@Payload() payload: IFindOneId) {
-    return this.aboutUsMicroService.findAboutUs(payload);
+  @MessagePattern(AboutUsPattern.FIND_ABOUT_ID)
+  findAboutUsPageById(@Payload() payload: IFindOneId) {
+    return this.aboutUsMicroService.findAboutUsById(payload);
   }
+
+
+
+
+  
+  // @MessagePattern(AboutUsPattern.FIND_ABOUT)
+  // findAboutUsPage(@Payload() payload: IFindAbout) {
+  //   console.log(payload);
+  //   return this.aboutUsMicroService.findAboutUs(payload);
+  // }
+
+
 
 
 

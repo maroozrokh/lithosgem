@@ -1,4 +1,4 @@
-import { IAdmin, IBlog,IFindOneByCondition,IOcontent, Ivisual, TAdmin } from "@libs/interface";
+import { IAdmin, IBlog,IFindOneByCondition,IContent_type, IAssets_type, TAdmin } from "@libs/interface";
 import { ICategory, IColor, IEditeColor, IFindAllCat, IFindAllColor } from "@libs/interface/setting";
 import { SafeMongoIdTransform } from "@libs/schema";
 import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";

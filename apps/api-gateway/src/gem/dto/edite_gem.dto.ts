@@ -1,4 +1,4 @@
-import { IBoresh, IEditeGem, IGem, IGemTable, IOcontent, Ivisual } from "@libs/interface";
+import {  IContent_type, IEditeGem } from "@libs/interface";
 import { ApiProperty } from "@nestjs/swagger";
 import { IsArray, IsNumber, IsObject, IsString } from "class-validator";
 import { ContentDto, VisualDto } from "../../blog/dto/add_blog.dto";
@@ -14,7 +14,7 @@ export class EditeGemDto implements IEditeGem{
         metaDescription: string;
         @ApiProperty({type: ()=>ContentDto ,isArray:true})
         @IsArray()
-        content: IOcontent[];
+        content: IContent_type[];
         @ApiProperty()
         categories: string[];
         @ApiProperty({type: ()=>VisualDto ,isArray:true})
@@ -46,8 +46,8 @@ export class EditeGemDto implements IEditeGem{
         @ApiProperty()
         @IsNumber()
         views?: number;
-        // @ApiProperty()
-        // updatedAt?: Date;
+        @ApiProperty()
+        updatedAt?: Date;
 
     }
     

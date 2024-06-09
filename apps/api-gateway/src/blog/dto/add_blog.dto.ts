@@ -12,10 +12,10 @@ import {
 export class VisualDto implements IAssets_type{
     @ApiProperty({ example: 'url' })
     @IsString()
-    url: string;
+    url?: string;
     @ApiProperty({ example: 'alt' })
     @IsString()
-    alt: string;
+    alt?: string;
     @ApiProperty({ example: 'name' })
     @IsString()
     name?: string;

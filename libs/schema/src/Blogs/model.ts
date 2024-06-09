@@ -30,7 +30,7 @@ export class Iimage implements IAssets_type {
 
 }
 
-export class IOcontents implements IContent_type{
+export class IContent_types implements IContent_type{
     @Prop({ required: false, default: 1})
     order?: number;
     @Prop({ required: true, default: 'gem stone text content' })
@@ -51,7 +51,7 @@ export class Blog extends BaseModel implements IBlog {
     @Prop({ required: true, default: 'gem stone' })
     title: string;
     @Prop({ required: true , default: null})
-    content: IOcontents[];
+    content: IContent_types[];
     @Prop({ required: true, default: 'meta description' })
     metaDescription: string;
     @Prop({ required: false, default: [], _id : true, type: Array<Iimage> })

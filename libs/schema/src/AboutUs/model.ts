@@ -2,7 +2,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 import { BaseModel } from '../Base/base.model';
 import { IUser } from '@libs/interface/user';
-import { IBlog, Ivisual } from '@libs/interface/blog';
+import {  IAssets_type } from '@libs/interface/blog';
 import { IAboutUs, IAdmin, IOConteactInfo, IOExpertPerson, IOSocialMedia } from '@libs/interface';
 
 export type AboutUsDocument = AboutUs & Document;
@@ -14,8 +14,8 @@ export class ExpertPersonModel implements IOExpertPerson{
     description?: string;
     @Prop({ required: false, default: 0})
     order?: number ;
-    @Prop({ required: false,type: Array<Ivisual> })
-    personImg?:Ivisual;
+    @Prop({ required: false,type: Array<IAssets_type> })
+    personImg?:IAssets_type;
 }
 
 @Schema({
@@ -26,8 +26,8 @@ export class ExpertPersonModel implements IOExpertPerson{
  
 export class AboutUs extends BaseModel implements IAboutUs {
     // _id?: any;
-    @Prop({ required: false, default: [], _id : true, type: Array<Ivisual> })
-    bannerImg: Ivisual;
+    @Prop({ required: false, default: [], _id : true, type: Array<IAssets_type> })
+    bannerImg: IAssets_type;
     @Prop({ required: true, default: 'about gemston' })
     title: string;
     @Prop({ required: true, default: 'about meta' })

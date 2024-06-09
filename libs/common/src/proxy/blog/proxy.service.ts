@@ -45,7 +45,7 @@ export class BlogProxy extends AProxy<BlogProxy> {
 
   
 
-  // addImage(payload: Ivisual) {
+  // addImage(payload: IAssets_type) {
   //   return this.send(BlogPattern.ADD_IMAGE, payload);
   // }
  

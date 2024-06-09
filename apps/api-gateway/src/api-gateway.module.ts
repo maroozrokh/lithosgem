@@ -1,6 +1,6 @@
 import { ThrottlerModule } from '@nestjs/throttler';
 import { Module } from '@nestjs/common';
-import { AdminProxyModule, setupEnv } from '@res/common';
+import { AdminProxyModule, FAQProxyModule, setupEnv } from '@res/common';
 import { BlogProxyModule } from '@res/common/proxy/blog';
 import { AuthModule } from '@res/common/decorators/auth';
 import { ThrottlerConfigAsync, ThrottlerService } from '@res/common/config/app/throttler.config';
@@ -14,6 +14,12 @@ import { CatModule } from './setting/category/category.module';
 import { AdminModule } from './admin/admin.module';
 import { ColorModule } from './setting/colors/colormodule';
 import { EmailProxyModule } from '@res/common/email';
+import { MapsModule } from './setting/maps/mapsmodule';
+import { FaqModule } from './faq/faq.module';
+import { IndexProxyModule } from '@res/common/proxy/indexProxy';
+import { IndexModule } from './index/index.module';
+import { GalleryModule } from './gallery/gallery.module';
+import { GalleryProxyModule } from '@res/common/proxy/gallery';
 
 
 @Module({
@@ -32,10 +38,17 @@ import { EmailProxyModule } from '@res/common/email';
     SettingProxyModule,
     CatModule,
     ColorModule,
+    FaqModule,
+    FAQProxyModule,
+    MapsModule,
+    IndexProxyModule,
+    IndexModule,
     AdminModule,
     AdminProxyModule,
+    GalleryModule,
+    GalleryProxyModule
     // EmailProxyModule,
-    AuthModule,
+    // AuthModule,
 
   ],
   providers: [ThrottlerService],

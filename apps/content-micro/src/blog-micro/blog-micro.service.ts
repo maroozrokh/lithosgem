@@ -4,7 +4,7 @@ import { Injectable } from '@nestjs/common';
 import { BAD_REQUEST, OK } from '@res/common/helpers';
 import { BlogContentRepository } from '@libs/schema/BlogContent';
 //   const newSubItem: IBlog = {};
-//   const newMainItem: Ivisual = {
+//   const newMainItem: IAssets_type = {
 //   subItems: [newSubItem], // اضافه کردن یک SubItem به MainItem
 // };
 @Injectable()
@@ -19,7 +19,7 @@ export class BlogMicroService {
 
 
 
-  // async addIMG(payloadIMG: Ivisual) {
+  // async addIMG(payloadIMG: IAssets_type) {
 
   //   const image = await this.imageRepo.create({
   //     payloadIMG,
@@ -28,7 +28,7 @@ export class BlogMicroService {
   // }
 
 
-  // async addContent(payload: IOcontent) {
+  // async addContent(payload: IContent_type) {
   //   const content = await this.blogContentRepo.create({
   //     payload,
   //   });

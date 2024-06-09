@@ -4,7 +4,7 @@ import { AddGemDto } from './dto/add_gem.dto';
 import { EditeGemDto } from './dto/edite_gem.dto';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { FindAllGemDto } from './dto/finad_all_gem.dto';
-import { FindOneDto } from './dto/find_one_gem.dto';
+import { FindOneByNameDto, FindOneDto } from '../blog/dto/find_one_blog.dto';
 
 @ApiTags('Gem')
 @Controller('gem')
@@ -32,6 +32,18 @@ export class GemController {
     return this.gemService.findOneGem(payload);
   }
 
+  
+  @ApiOperation({
+    summary: 'Find one gem by name',
+    description: 'Find by name',
+  })
+  @Get('/gem/:title')
+  async findBlogByName(@Query('title') title: FindOneByNameDto){
+    return this.gemService.findOneGemByName(title);
+  }
+
+
+
 
 
   @ApiOperation({
@@ -41,10 +53,8 @@ export class GemController {
   @Post()
   // @Auth(Role.ADMIN,Role.SUPER_ADMIN)
   addGem(@Body() payload: AddGemDto) {
-   
     return this.gemService.addGem(payload);
   }
-
 
   
   @ApiOperation({
@@ -58,6 +68,21 @@ export class GemController {
         ...param,
     });
   }
+
+
+
+  @ApiOperation({
+    summary: 'delete one boresh',
+    description: 'delete one boresh',
+  })
+
+  @Delete('/boresh/:_id')
+  deleteGemBoresh( @Param() param: FindOneDto) {
+    return this.gemService.deleteBoreshGem({
+        ...param,
+    });
+  }
+
 
   @Put('/:_id')
   // @Auth(Role.ALL)

@@ -1,4 +1,4 @@
-import { IAdmin, IBlog,IFindOneByCondition,IOcontent, Ivisual, TAdmin } from "@libs/interface";
+import { IAdmin, IBlog,IFindOneByCondition,IContent_type, IAssets_type, TAdmin } from "@libs/interface";
 import { ICategory, IFindAllCat } from "@libs/interface/setting";
 import { SafeMongoIdTransform } from "@libs/schema";
 import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
@@ -33,10 +33,10 @@ export class AddCatDto implements ICategory{
     @ApiProperty({example:['red','blue']})
     @IsArray()
     typeCat: string[];
-    @ApiProperty()
-    updatedAt?: Date;
-    @ApiProperty()
-    createdAt?: Date;
+    // @ApiProperty()
+    // updatedAt?: Date;
+    // @ApiProperty()
+    // createdAt?: Date;
     @ApiProperty()
     admin?: TAdmin;
    

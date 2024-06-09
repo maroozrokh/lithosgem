@@ -1,7 +1,8 @@
+import { Payload } from '@nestjs/microservices';
 import { Inject, Injectable } from '@nestjs/common';
  import { AProxy } from '../base/proxy-service';
 import { GemPattern } from './enum';
-import { IEditeGem,   IFindAllGem, IFindOneId, IGem } from '@libs/interface';
+import { IBoresh, IEditeGem,   IFindAllGem, IFindOneByCondition, IFindOneId, IGem } from '@libs/interface';
  
  
 
@@ -32,6 +33,14 @@ export class GemProxy extends AProxy<GemProxy> {
 
   addGem(payload: IGem) {
     return this.send(GemPattern.ADD_GEM, payload);
+  }
+
+  findOneByName(payload: IFindOneByCondition) {
+    return this.send(GemPattern.FIND_ONE_GEM_BY_NAME, payload);
+  }
+  deleteBoreshGem(payload: IBoresh){
+    return this.send(GemPattern.DELETE_BORESH, payload);
+
   }
 
 

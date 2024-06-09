@@ -2,6 +2,7 @@ import { ApiProperty } from "@nestjs/swagger";
 
 import {
 
+  IsArray,
     IsObject,
     IsString,
   } from 'class-validator';
@@ -23,14 +24,14 @@ import { ConteactInfoDto, ExpertPersonDto, SocialMediaDto } from './edite_aboutU
   @ApiProperty({ example: 'mapAdress' })
   @IsString()
   mapaddress?: string;
-  @ApiProperty({type: ()=>ConteactInfoDto })
-  @IsObject()
-  contactinfo?: ConteactInfoDto[];
-  @ApiProperty({type: ()=>SocialMediaDto })
-  @IsObject()
-  socialmedia?: SocialMediaDto[];
-  @ApiProperty({type: ()=>ExpertPersonDto })
-  @IsObject()
+  @ApiProperty({type: ()=>ConteactInfoDto  , isArray:true})
+  @IsArray()
+    contactinfo?: ConteactInfoDto[];
+  @ApiProperty({type: ()=>SocialMediaDto , isArray:true})
+  @IsArray() 
+   socialmedia?: SocialMediaDto[];
+  @ApiProperty({type: ()=>ExpertPersonDto , isArray:true })
+  @IsArray()
   person?: ExpertPersonDto[];
   @ApiProperty()
   amdin?:TAdmin;

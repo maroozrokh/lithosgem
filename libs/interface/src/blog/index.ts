@@ -31,7 +31,7 @@ export interface IBlog {
 
   export interface IAssets_type{
     _id?: any;
-    url: string;
+    url?: string;
     alt?: string;
     name?: string;
     order?: number;
@@ -39,7 +39,25 @@ export interface IBlog {
     urlImg?: string ;
     type?: string;
     categories?:string[];
+    createdAt?:Date;
   }
+
+
+  export interface IVideo_type{
+    _id?: any;
+    url?: string;
+    alt?: string;
+    name?: string;
+    order?: number;
+    link?: string;
+    urlImg?: string ;
+    type?: string;
+    categories?:string[];
+    createdAt?:Date;
+    location?:string;
+    tags?:Array<string>;
+  }
+
 
 
 
@@ -78,6 +96,14 @@ export interface IBlog {
     category?: Array<string>;
   
   }
+//TODO
+  export interface IFindNewestBlog extends IPagination {
+    query?: any;
+    blog?: TBlog ;
+    updatedAt?:Date;
+  
+  }
+
 
 
   // export interface IFindAllUser extends IPagination {

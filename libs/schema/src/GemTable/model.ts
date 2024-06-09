@@ -2,7 +2,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 import { BaseModel } from '../Base/base.model';
 import { IBoresh, IGem, IGemTable } from '@libs/interface/gem';
-import { IOcontents, Iimage } from '../Blogs';
+import { IContent_types, Iimage } from '../Blogs';
 
 export type GemTableDocument = GemTable & Document;
 export const GEMTABLE = 'GemTable';

@@ -30,6 +30,9 @@ export class ConteactInfoDto implements IOConteactInfo{
 }
 
 export class SocialMediaDto implements IOSocialMedia{
+    @ApiProperty({ example: 'about us' })
+    @IsString()
+    name: string;
     @ApiProperty({ example: 'www.113.com' })
     @IsString()
     url?: string;

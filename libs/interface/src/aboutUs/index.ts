@@ -1,24 +1,28 @@
 // import { ObjectId } from '@libs/schema';
 // import { IPagination } from '../Base';
 
-import { VisualDto } from "apps/api-gateway/src/blog/dto/add_blog.dto";
+import { ObjectId } from "@libs/schema";
 import { IAdmin } from "../admin";
-import { Ivisual } from "../blog";
+import { IAssets_type } from "../blog";
+
+
 
 export interface IAboutUs{
   
   _id?: any;
-  bannerImg?:Ivisual;
+  bannerImg?:IAssets_type;
   title: string;
   metaDescription: string;
   content?: string;
-  mapaddress?: string;
+  mapaddress?: string; 
   contactinfo?: IOConteactInfo[];
   socialmedia?: IOSocialMedia[];
   person?: IOExpertPerson[];
   amdin?:IAdmin;
   updatedAt?:Date;
   createdAt?: Date;
+
+
 
   }
 
@@ -30,55 +34,32 @@ export interface IAboutUs{
 
   }
 
+  
+
   export interface IOSocialMedia{
+    _id?:any
     url?: string;
     alt?: string;
+    name:string;
     link?: string;
   }
 
-  // export interface IOperson{
-  //   _id?: string;
-  //   url?: string;
-  //   alt?: string;
-  //   name?: string;
-  //   link?: string;
-  //   text?: string;
-  //   order?: number | null;
-    
-  // }
 
 
   export interface IOExpertPerson{
     _id?: string;
-    description?: string;
+    persondescription?: string;
     order?: number ;
-    personImg?:Ivisual;
+    personImg?:IAssets_type;
     
   }
-
-
-
-  // export interface IContactUs{
-
-  // title?: string;
-  // metaDescription?: string;
-  // content?: string;
-  // mapaddress?: string;
-  // contactinfo?: IOConteactInfo[];
-  // socialmedia?: Ivisual[];
-  // person?: IOExpertPerson[];
-  // amdin?:IAdmin;
-  // updatedAt?:Date;
-  // createdAt?: Date;
-  
-  // }
 
 
    
   export interface IEditAboutUs{
 
     _id?: any;
-    bannerImg?:Ivisual;
+    bannerImg?:IAssets_type;
     title: string;
     metaDescription: string;
     content?: string;
@@ -89,6 +70,13 @@ export interface IAboutUs{
 
   }
 
+  export type TAbout = IAboutUs | string | typeof ObjectId;
 
+
+  export interface IFindAbout  {
+    contactUs?: TAbout ;
+    query?: any;
+    // _id?: any;
   
+  }
   
